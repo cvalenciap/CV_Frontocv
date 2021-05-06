@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-between">
+  <div [className]="mobileQuery.matches ? 'izquierda-mobile' : 'izquierda'">
+    <div [className]="mobileQuery.matches ? 'header-agency-mobile text-center' : 'header-agency text-center'">
+      Agencias
+    </div>
+    <div class="table-responsive" style="padding: 0 2em;">
+      <table class="agencies table table-hover" id="tabla_agencias">
+        <tbody>
+        <tr (click)="OnSelectRow(i, agenciaPago)"
+            *ngFor="let agenciaPago of agenciasPago; let i = index">
+          <td class="agency">
+            <button class="agency-button" mat-icon-button>
+              <mat-icon (click)="OnMuestraMapaPrincipal(agenciaPago)"
+                        matTooltip="Ver sucursales de {{agenciaPago.nom_entidad}}">add_location
+              </mat-icon>
+              {{agenciaPago.nom_entidad}}
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div [className]="mobileQuery.matches ? 'derecha-mobile' : 'derecha'">
+    <h2>Sucursales</h2>
+    <div class="header-container">
+      <div class="table-responsive">
+        <table class="table table-hover issue-tracker" id="tabla_sucursales" name="tabla_sucursales">
+          <thead>
+          <tr>
+            <th></th>
+            <th class="text-left">Recaudador</th>
+            <th class="text-left">Dirección</th>
+            <th class="text-left">Distrito</th>
+            <th class="text-left">Tipo</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sucursalPago of sucursalesPago; let i = index;">
+            <td class="map-icon">
+              <a *ngIf="sucursalPago.longitud !== 0 && sucursalPago.latitud !== 0" class="incidence-map"
+                 mat-icon-button>
+                <mat-icon (click)="OpenMapaPrincipal(sucursalPago)"
+                          matTooltip="Ver sucursal {{sucursalPago.nom_recaudador}} en mapa">add_location
+                </mat-icon>
+              </a>
+            </td>
+            <td class="text-left">{{sucursalPago.nom_recaudador}}</td>
+            <td class="text-left">{{sucursalPago.dir_recaudador}}</td>
+            <td class="text-left">{{sucursalPago.distrito}}</td>
+            <td class="text-left">{{sucursalPago.tip_recaudador}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

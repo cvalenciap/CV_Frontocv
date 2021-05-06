@@ -1,0 +1,27 @@
+.bg-password {
+  background-color: #edf1f8;
+  padding-bottom: 0;
+  padding-top: 10px;
+  padding-left: 500px;
+  padding-right: 500px;
+  margin-left: -500px;
+  margin-right: -500px;
+}
+
+.re-captcha {
+  margin: 0 auto;
+}
+
+.mt-5 {
+  margin-top: 2rem!important;
+}
+
+.logo-sedapal {
+  height: 50px;
+  margin-bottom: 30px;
+}
+@media (min-width: 770px) {
+  .logo-sedapal {
+    display: none;
+  }
+}

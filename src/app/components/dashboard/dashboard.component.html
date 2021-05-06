@@ -1,0 +1,40 @@
+<main class="row">
+  <span openDialog></span>
+  <div class="ocv-container">
+    <app-banner (Toggler)="toggle(snav)" (Toggler2)="toggleSidenav()"></app-banner>
+    <mat-sidenav-container autosize class="ocv-sidenav-container">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   opened="{{!mobileQuery.matches}}" class="ocv-sidenav" [style.width]="showFiller ? '250px' : '67px'">
+        <mat-nav-list>
+          <div *ngIf="!mobileQuery.matches" style="width: 100%; display: flex;" [align]="showFiller ? 'right' : 'center'">
+            <mat-icon mat-list-icon (click)="showFiller = !showFiller" class="icon-menu">
+              {{showFiller ? 'clear' : 'menu'}}
+            </mat-icon>
+          </div>
+          <div routerLink="/consulta-recibos" [routerLinkActive]="['active-menu']" [class.link-menu]="showFiller" [class.link-menu-min]="!showFiller">
+              <img [class]="showFiller ? 'menu-icon-svg' : 'menu-icon-svg-min'" src="assets/img/icon-consulta-y-pagos.svg">
+              <span class="text-icon" *ngIf="showFiller">Consultas y Pagos</span>
+          </div>
+          <div routerLink="/incidencias" [routerLinkActive]="['active-menu']" [class.link-menu]="showFiller" [class.link-menu-min]="!showFiller">
+            <img [class]="showFiller ? 'menu-icon-svg' : 'menu-icon-svg-min'" src="assets/img/icon-incidencias.svg">
+            <span class="text-icon" *ngIf="showFiller">Incidencias</span>
+          </div>
+          <div routerLink="/lugares-pago" [routerLinkActive]="['active-menu']" [class.link-menu]="showFiller" [class.link-menu-min]="!showFiller">
+            <img [class]="showFiller ? 'menu-icon-svg' : 'menu-icon-svg-min'" src="assets/img/icon-lugares-de-pago.svg">
+            <span class="text-icon" *ngIf="showFiller">Lugares de Pago</span>
+          </div>
+          <div *ngIf="admin_etic > 0 || admin_com > 0" routerLink="/parametros" [routerLinkActive]="['active-menu']" [class.link-menu]="showFiller" [class.link-menu-min]="!showFiller">
+            <img [class]="showFiller ? 'menu-icon-svg' : 'menu-icon-svg-min'" src="assets/img/icon-parametros.svg" style="width: 23px; margin-right: 12px;">
+            <span *ngIf="showFiller">Parámetros</span>
+          </div>
+        </mat-nav-list>
+        <img [src]="getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().sidenav" class="fondo" [hidden]="!showFiller">
+      </mat-sidenav>
+      <mat-sidenav-content style="transition-property: margin; transition-duration: 350ms; transition-timing-function: ease-out; padding-bottom: 50px">
+        <router-outlet>
+        </router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+    <app-footer *ngIf="!mobileQuery.matches" [style.marginLeft]="showFiller ? '250px' : '67px'"></app-footer>
+  </div>
+</main>

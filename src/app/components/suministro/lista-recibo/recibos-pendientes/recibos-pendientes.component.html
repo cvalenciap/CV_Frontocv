@@ -1,0 +1,101 @@
+<span openDialog></span>
+<div *ngIf="tienePendientes else noData">
+  <div class="table-responsive">
+    <table class="table table-hover issue-tracker" id="tabla-pendientes" [style.width]="mobileQuery.matches ? '900px' : '100%'">
+      <thead class="table-head">
+        <tr>
+          <th width="2%" style="border: none;">
+            <label class="container">
+              <input (change)="checkAll()" [(ngModel)]="checkedAll" type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+          </th>
+          <th width="19%" style="border: none;">Fecha de Facturación</th>
+          <th width="15%" style="border: none;">Vencimiento</th>
+          <th width="10%" style="border: none;">Importe Total</th>
+          <th width="10%" style="border: none;">Pagado</th>
+          <th width="10%" style="border: none;">Deuda</th>
+          <th width="13%" style="border: none;">Volumen de Agua</th>
+          <th width="21%" style="border: none;">Tipo de Recibo</th>
+          <th style="border: none;">
+            <button mat-icon-button class="icon" [tabIndex]="-1"style="visibility: hidden; height: 0px;">
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr (click)="selectRow(i, dato)" *ngFor="let dato of datos; let i = index">
+          <td width="2%" style="vertical-align: middle;">
+            <label class="container">
+              <input (change)="OnCheck($event, i, dato)" [(ngModel)]="dato.select" type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td width="19%" >
+            <span style="vertical-align: middle; display: inline-block;"> <!--[style.width]="showInfo && i == 0 ? '65%' : '80%'">-->
+              {{dato.mes | date : 'dd / MM / yyyy'}}
+            </span>
+            <img *ngIf="OnVencido(dato.vencimiento)!=0; else aldia" height="25px" matTooltip="Usted no se encuentra al día"
+                 src="assets/img/face-expired.svg" width="25px" style="float: right">
+            <img *ngIf="showInfo && i == 0" matTooltip="{{info}}" height="25px" src="assets/img/icon-info-msg.svg"
+                 style="float: right;">
+            <ng-template #aldia>
+            </ng-template>
+          </td>
+          <td width="15%" >{{dato.vencimiento | date : 'dd / MM / yyyy'}}</td>
+          <td width="10%">{{dato.total_fact | CustomeCurrency}}</td>
+          <td width="10%">{{dato.total_fact - dato.deuda | CustomeCurrency}}</td>
+          <td width="10%">{{dato.deuda | CustomeCurrency}}</td>
+          <td width="13%">{{dato.volumen | Volume}}</td>
+          <td width="21%">
+            <span style="vertical-align: middle; display: inline-block; margin-right: 10px;">
+              {{dato.tipo_recibo}}
+            </span>
+          </td>
+          <td>
+            <!--<button [matMenuTriggerFor]="menu" mat-icon-button class="icon" [tabIndex]="-1" style="width: 0;" height="17">
+              <img src="assets/img/icon-menu.svg" width="4px">
+            </button>-->
+            <button [matMenuTriggerFor]="menu" mat-icon-button class="icon" [tabIndex]="-1" height="17px" style="float: right">
+              <img src="assets/img/icon-menu.svg" width="4px">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center">
+    <button (click)="pagarMultiple()" class="pagar-recibos" type="button">PAGAR RECIBOS
+      ({{totalCheck}} seleccionado(s) {{totalPago | CustomeCurrency}})
+    </button>
+  </div>
+  <app-pagination (goNext)="onNext()" (goPage)="goToPage($event)" (goPrev)="onPrev()" [count]="total" [page]="page"
+                  [pagesToShow]="6" [perPage]="limit"></app-pagination>
+</div>
+<ng-template #noData>
+  <div class="no-data">
+    <img src="assets/img/icon-clap.svg" width="80" height="80" class="image">
+    <div class="titulo">
+      ¡Felicidades! No tienes recibos pendientes
+    </div>
+    <div class="descripcion">
+      Sedapal agradece tu compromiso con nosotros
+    </div>
+  </div>
+</ng-template>
+
+<mat-menu #menu="matMenu">
+  <a mat-menu-item (click)="viewDetalle()">
+    <img src="assets/img/icon-ver-detalle.svg" width="12px">
+    <span class="receipt-menu">Ver detalle</span>
+  </a>
+  <a mat-menu-item (click)="viewPagos()">
+    <img src="assets/img/icon-ver-pagos.svg" width="12px">
+    <span class="receipt-menu">Ver pagos y amortizaciones</span>
+  </a>
+  <a mat-menu-item (click)="viewRecibo(dato)">
+    <img src="assets/img/icon-ver-recibo.svg" width="12px">
+    <span class="receipt-menu">Ver recibo y descarga PDF</span>
+  </a>
+</mat-menu>

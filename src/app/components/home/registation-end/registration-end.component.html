@@ -1,0 +1,32 @@
+<span openDialog></span>
+<div class="container app-registration-end">
+    <img [src]="getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().logo_color" class="logo-sedapal">
+    <div class="status-operation">
+        <img src="assets/img/icon-modal-success.svg"/>
+        <h3>REGISTRO COMPLETADO SATISFACTORIAMENTE</h3>
+    </div><br/>
+    <div class="header-container">
+        <p>
+            Estimado(a) usuario, te has registrado correctamente con el correo <strong>{{correo}}</strong>, en breve recibirás un código de verificación en tu correo, el mismo que será solicitado la primera vez que ingreses al aplicativo. Si no lo recibes en tu bandeja,
+            busca tu carpeta de spam.
+        </p><br/>
+        <!-- <p><strong>Recuerda que es necesaria la confirmación de tu cuenta antes de ingresar al aplicativo web o móvil</strong>. 
+        </p><br/> -->
+        <p class="black-87 font-size-12">
+            ¿No ha llegado el correo de confirmación? <a style="color:#007bff" (click)="reenviar()">Reenvíar confirmación</a>
+        </p>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <a (click)="cerrar()" style="float: right; color: #009ff6; vertical-align: middle;">
+            <img class="btn-back" src="assets/img/flecha-atras.svg">
+            <span class="label-back">CERRAR</span>
+        </a>
+    </div>
+</div>
+
+<ng-template #imgLoading>
+  <img
+    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+  />
+</ng-template>

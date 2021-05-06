@@ -1,0 +1,42 @@
+<div [className]="mobileQuery.matches ? 'banner-mobile' : 'banner'"
+     [style.background]="getBanner()"
+     class="d-flex justify-content-between">
+  <div class="header-lateral">
+    <button (click)="toggle()" class="boton-menu" mat-icon-button [hidden]="true">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button (click)="toggle2()" class="boton-menu" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img [src]="getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().logo" [style.height]="mobileQuery.matches ? '25px' : '50px'">
+  </div>
+  <div class="header">
+    <div class="container">
+      <label [className]="mobileQuery.matches ? 'sign-mobile' : 'sign'">&#161;</label>
+      <span
+        [className]="mobileQuery.matches ? 'tittle-mobile' : 'tittle'">{{getTitulos().titulo}}</span>
+      <label
+        [className]="mobileQuery.matches ? 'sign-mobile' : 'sign'">&#33;</label>
+      <div *ngIf="!mobileQuery.matches">
+        <p class="text-container">{{getTitulos().subtitulo1}}</p>
+        <p class="text-container">{{getTitulos().subtitulo2}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="header-lateral">
+    <button [matMenuTriggerFor]="menu" class="boton-menu" mat-icon-button>
+      <mat-icon [style.fontSize]="mobileQuery.matches ? '30px' : '36px'">account_circle</mat-icon>
+    </button>
+    <span [className]="mobileQuery.matches ? 'text-mobile' : 'text'" [matMenuTriggerFor]="menu">{{correo}}</span>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLink="/actualizar-datos" style="text-decoration: none">
+        <mat-icon>autorenew</mat-icon>
+        Actualizar Datos
+      </a>
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        Cerrar sesión
+      </button>
+    </mat-menu>
+  </div>
+</div>

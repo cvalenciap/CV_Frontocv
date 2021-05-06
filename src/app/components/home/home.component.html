@@ -1,0 +1,23 @@
+<main [hidden]="!mostrar" class="page-home row">
+  <aside class="col-md-5">
+    <app-intro (CargarImagenes)="finsihImagenes()"></app-intro>
+  </aside>
+  <section class="col-md-7">
+    <!--<div [ngSwitch]="route" class="app-home">-->
+    <div class="app-home">
+      <router-outlet>
+        <!--<app-login *ngSwitchCase="'iniciar-sesion'"></app-login>
+        <app-registration *ngSwitchCase="'registro'"></app-registration>
+        <app-forgot-password *ngSwitchCase="'olvido-contrasena'"></app-forgot-password>
+        <app-update-password *ngSwitchCase="'actualizar-contrasena'"></app-update-password>-->
+      </router-outlet>
+      <span style="vertical-align: middle; display: inline-block; padding-right: 10px;"> <!--[style.width]="showInfo && i == 0 ? '65%' : '80%'">-->
+        Aplicación optimizada para
+      </span>
+      <img height="25px" matTooltip="Google Chrome"
+           src="assets/img/icon-chrome.svg" width="20px">
+      <img height="25px" matTooltip="Google Chrome" style="margin-left: 10px"
+           src="assets/img/icon-firefox.svg" width="20px">
+    </div>
+  </section>
+</main>

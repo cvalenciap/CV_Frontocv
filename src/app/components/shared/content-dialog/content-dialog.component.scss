@@ -1,0 +1,43 @@
+@import "variables";
+
+.answer {
+  border: none;
+  background: none;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #0ea6e4;
+  text-decoration: underline;
+  cursor: pointer;
+  outline: none;
+}
+
+a:link {
+  color: #007bff !important;
+}
+
+/* visited link */
+a:visited {
+  color: #007bff !important;
+}
+
+/* mouse over link */
+a:hover {
+  color: #007bff !important;
+}
+
+/* selected link */
+a:active {
+  color: #007bff !important;
+}
+
+a:not([href]):not([tabindex]) {
+  color: #007bff !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}

@@ -1,0 +1,128 @@
+@import 'variables';
+
+.bg-image {
+  position: relative;
+  z-index: 2;
+}
+.bg-image .fondo {
+  display: block;
+  width: 100%;
+  height: 131px;
+  margin: 0 auto;
+}
+.bg-image .fondo-mobile {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+}
+.bg-image h1 {
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  text-align: center;
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #fefefe;
+}
+.bg-image h2 {
+  position: absolute;
+  top: 54px;
+  width: 100%;
+  text-align: center;
+  font-family: $font-family;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.36;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.logo {
+  position: absolute;
+  top: 24px;
+  left: 53px;
+  height: 50px;
+}
+.logo-mobile {
+  position: absolute;
+  top: 18px;
+  left: 50px;
+  height: 40px;
+}
+.icon {
+  position: absolute;
+  top: 25px;
+  right: 37px;
+  color: white;
+}
+.icon-mobile {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  color: white;
+}
+.user-icon {
+  position: absolute;
+  top: 25px;
+  color: white;
+}
+.correo {
+  position: absolute;
+  top: 31px;
+  height: 15px;
+  right: 90px;
+  color: white;
+  font-weight: normal;
+  font-size: $font-size;
+  font-family: $font-family;
+}
+.correo-mobile {
+  position: absolute;
+  top: 21px;
+  height: 15px;
+  right: 40px;
+  color: white;
+  font-weight: normal;
+  font-size: $font-size;
+  font-family: $font-family;
+}
+.span {
+  font: 20px "Georgia", "Apple Symbols", serif;
+  font-weight: 900;
+  line-height: 1.1;
+}
+.menu-sandwich {
+  position: absolute;
+  top: 29px;
+  left: 20px;
+  height: 12px;
+  cursor: pointer;
+}
+@media screen and (max-width: 1170px) {
+  .subtitulo {
+    display: none;
+    transition: 500ms;
+  }
+}
+@media screen and (max-width: 900px) {
+  .titulo {
+    display: none;
+    transition: 500ms;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+.receipt-menu {
+  margin-left: 10px;
+  color: #009ff6;
+}
+.mat-menu-item-highlighted:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item:hover:not([disabled]) {
+  background-color: #e2f0ff;
+}

@@ -1,0 +1,118 @@
+<div [ngSwitch]="data.dialogSRC">
+  <app-terms-conditions
+    *ngSwitchCase="'termsConditions'"
+  ></app-terms-conditions>
+  <mat-dialog-content *ngSwitchCase="'registrationOK'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensajeCab}}</h3>
+    <p [innerHTML]="data.mensajeDesc">
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'resetPasswordOK'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensajeCab}}</h3>
+    <p [innerHTML]="data.mensajeDesc">
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'updatePasswordOK'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensajeCab}}</h3>
+    <p [innerHTML]="data.mensajeDesc">
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'confirmOk'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensajeCab}}</h3>
+    <p [innerHTML]="data.mensajeDesc">
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'updateOK'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensajeCab}}</h3>
+    <p [innerHTML]="data.mensajeDesc">
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'info-pago'" class="dialog">
+    <img src="assets/img/icon-info.svg"/>
+    <h3>Al realizar el pago no cierres esta ventana que se estará procesando tu pago.</h3>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'mensajePago'" class="dialog">
+    <img src="assets/img/icon-info.svg"/>
+    <h3>Recuerde no cerrar la página o navegador hasta completar el pago.</h3>
+    <div align="center" class="d-flex flex-column">
+      <button class="link primary d-block mt-3" mat-dialog-close="0" style="outline: none;">
+        Aceptar
+      </button>
+    </div>
+  </mat-dialog-content>
+  <!-- add verify code -->
+  <mat-dialog-content *ngSwitchCase="'verifyCodeOK'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensaje}}</h3>
+  </mat-dialog-content>
+  <!--   -->
+  <mat-dialog-content *ngSwitchCase="'addParameterOK'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensaje}}</h3>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'resultPaymentOK'" class="dialog">
+    <img src="assets/img/icon-modal-success.svg"/>
+    <h3>{{data.mensaje}}</h3>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'resultPaymentError'" class="dialog">
+    <img src="assets/img/icon-modal-error.svg"/>
+    <h3>{{data.mensaje}}</h3>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'confirmPayment'" class="dialog">
+    <img src="assets/img/icon-info.svg"/>
+    <h3>La comisión por el uso de tarjeta de crédito para el pago en línea es de {{data.comision | CustomeCurrency}}</h3>
+    <h3>¿Desea continuar?</h3>
+    <button class="answer" style="float: left;" (click)="ConfirmarPago.emit()" mat-dialog-close="1">Si</button>
+    <button class="answer" style="float: right;" mat-dialog-close="0">No</button>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'errorPago'" class="dialog">
+    <img src="assets/img/icon-modal-error.svg"/>
+    <h3>{{data.mensaje}}</h3>
+  </mat-dialog-content>
+  <mat-dialog-content *ngSwitchCase="'error'" class="dialog">
+    <img src="assets/img/icon-modal-error.svg"/>
+    <h3>Ha ocurrido un error</h3>
+    <p>{{ data.error }}</p>
+  </mat-dialog-content>
+  <!-- alerta login -->
+  <mat-dialog-content *ngSwitchCase="'alertLogin'" class="dialog">
+    <img src="assets/img/icon-info.svg"/>
+    <h3>TENER EN CUENTA</h3>
+    <p style="color:black !important;" [innerHTML]="data.alertMsg">
+    </p>
+    <button class="answer" style="float: left;" (click)="ConfirmarPago.emit()" mat-dialog-close="1">Si</button>
+    <button class="answer" style="float: right;" mat-dialog-close="0">No</button>
+  </mat-dialog-content>
+  <!--inicio cvalenciap-->
+  <mat-dialog-content *ngSwitchCase="'navigatorVersion'" class="dialog">
+    <img src="assets/img/icon-modal-error.svg"/>
+    <h3>Ha ocurrido un error</h3>
+    <p>{{ data.mensaje }}</p>
+  </mat-dialog-content>
+  <!--fin cvalenciap-->
+  <mat-dialog-content *ngSwitchCase="'loginError'" class="dialog">
+    <img src="assets/img/icon-modal-error.svg"/>
+    <h3>{{ data.title }}</h3>
+    <p>{{ data.error }}</p>
+    <div align="center" class="d-flex flex-column">
+      <button
+        class="mt-2"
+        color="primary"
+        mat-dialog-close="1"
+        mat-flat-button
+        type="submit"
+      >
+        REGÍSTRATE
+      </button>
+      <button class="link primary d-block mt-3" mat-dialog-close="0">
+        Intentar de nuevo
+      </button>
+    </div>
+  </mat-dialog-content>
+</div>
+<button mat-button mat-dialog-close class="dialogImage-close" *ngIf="!data.disableClose"></button>

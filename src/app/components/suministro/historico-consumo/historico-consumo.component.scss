@@ -1,0 +1,49 @@
+@import "variables";
+
+table {
+  width: 100%;
+}
+
+.header-consumption {
+  opacity: 0.87;
+  background-color: black;
+}
+
+th {
+  font-family: $font-family;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #ffffff;
+  text-align: left;
+}
+
+td {
+  opacity: 0.87;
+  font-family: $font-family;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #ffffff;
+  text-align: left;
+}
+
+.btn-descarga {
+  width: 172px;
+  margin: 0 auto;
+  text-decoration: none;
+  background: #009ff6;
+  border-radius: 16px;
+  height: 32px;
+  display: flex;
+  padding: 0 10px;
+  cursor: pointer;
+
+  span {
+    color: white;
+    margin: auto;
+    font-size: 12px;
+    font-family: $font-family;
+  }
+  img {
+    margin: auto;
+  }
+}

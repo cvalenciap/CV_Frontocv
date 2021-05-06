@@ -1,0 +1,125 @@
+@import 'variables';
+
+agm-map {
+  height: 500px;
+  width: 100%;
+}
+
+.agm-map-container-inner {
+  width: inherit;
+  height: inherit;
+}
+
+.agm-map-content {
+  display: none;
+}
+
+.modal-dialog {
+  width: 1000px;
+  left: 0px;
+}
+
+.modal-body {
+  width: 1000px;
+  left: 0px;
+}
+
+.modal-content {
+  width: 1000px;
+  left: 0px;
+}
+
+table {
+  @extend %tablaModal;
+}
+
+table td {
+  @extend %tdModal;
+}
+
+table th {
+  @extend %thModal;
+}
+
+table tbody {
+  @extend %tbodyModal;
+}
+
+h2 {
+  font-family: $font-family;
+  font-size: 1.2rem;
+  line-height: 1.33;
+  font-weight: 400;
+  color: var(--black-87);
+  padding-left: .4em;
+}
+
+.header-container {
+  @extend %container;
+}
+.mat-menu-item-highlighted:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item:hover:not([disabled]) {
+  background-color: #e2f0ff;
+}
+tr:hover td{
+  background-color: #e2f0ff;
+}
+
+a {
+  text-decoration: none;
+}
+.receipt-menu {
+  margin-left: 10px;
+  color: #009ff6;
+}
+.table-head {
+  //display: block;
+  width: 100%;
+}
+.table-body {
+  //display: block;
+  width: 100%;
+  max-height: 600px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+tbody::-webkit-scrollbar {
+  width: 9px;
+}
+tbody::-webkit-scrollbar-track {
+  border-radius: 4.5px;
+  background-color: #dbdbdb;
+}
+
+tbody::-webkit-scrollbar-thumb {
+  background-color: #727272;
+  outline: 1px solid #dbdbdb;
+  border-radius: 4.5px;
+}
+tbody::-webkit-scrollbar-corner {
+  border-radius: 4.5px;
+}
+.mat-menu-item-highlighted:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item:hover:not([disabled]) {
+  background-color: #e2f0ff;
+}
+tr:hover td{
+  background-color: #e2f0ff;
+}
+.label-mapa {
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #009ff6;
+  margin-left: 10px;
+}
+.global-map {
+  cursor: pointer;
+  background-color: #009FF6;
+  padding: 5px 10px;
+  border-radius: 100%;
+  margin-left: 10px;
+  height: 32px;
+}

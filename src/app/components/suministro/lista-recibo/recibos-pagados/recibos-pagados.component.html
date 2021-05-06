@@ -1,0 +1,52 @@
+<div class="table-responsive">
+  <table id="tabla-pagados" class="table table-hover issue-tracker" [style.width]="mobileQuery.matches ? '900px' : '100%'" >
+    <thead class="table-head">
+      <tr>
+        <th width="10%" style="border: none;">F.Facturación</th>
+        <th width="10%" style="border: none;">F.Vencimiento</th>
+        <th width="10%" style="border: none;">Importe Total</th>
+        <th width="10%" style="border: none;">Pagado</th>
+        <th width="10%" style="border: none;">Deuda</th>
+        <th width="14%" style="border: none;">F.Pago</th>
+        <th width="18%" style="border: none;">Estado Recibo</th>
+        <th width="18%" style="border: none;">Tipo de Recibo</th>
+        <th style="border: none;"></th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let dato of datos; let i = index;" (click)="selectRow(i, dato)">
+        <td width="10%" style="text-align: center;">{{dato.mes | date : 'dd / MM / yyyy'}}</td>
+        <td width="10%">{{dato.vencimiento | date : 'dd / MM / yyyy'}}</td>
+        <td width="10%">{{dato.total_fact | CustomeCurrency}}</td>
+        <td width="10%">{{dato.cobrado | CustomeCurrency}}</td>
+        <td width="10%">{{dato.total_fact - dato.cobrado | CustomeCurrency}}</td>
+        <td width="14%">{{dato.fecha_pago | date : 'dd / MM / yyyy'}}</td>
+        <td width="18%">{{dato.est_rec}}</td>
+        <td width="18%"><span>{{dato.tipo_recibo}}</span></td>
+        <td>
+          <button [matMenuTriggerFor]="menu" mat-icon-button class="icon" [tabIndex]="-1" height="17px" style="float: right">
+            <img src="assets/img/icon-menu.svg" width="4px">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-pagination (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()" [pagesToShow]="6" [page]="page"
+                [perPage]="limit" [count]="total"></app-pagination>
+
+<mat-menu #menu="matMenu">
+  <a mat-menu-item (click)="viewDetalle()">
+    <img src="assets/img/icon-ver-detalle.svg" width="12px">
+    <span class="receipt-menu">Ver detalle</span>
+  </a>
+  <a mat-menu-item (click)="viewPagos()">
+    <img src="assets/img/icon-ver-pagos.svg" width="12px">
+    <span class="receipt-menu">Ver pagos y amortizaciones</span>
+  </a>
+  <a mat-menu-item (click)="viewRecibo(dato)">
+    <img src="assets/img/icon-ver-recibo.svg" width="12px">
+    <span class="receipt-menu">Ver recibo y descarga PDF</span>
+  </a>
+</mat-menu>

@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-between">
+  <div [style.width]="mobileQuery.matches ? '40%' : '30%'">
+    <div
+      [className]="mobileQuery.matches ? 'header-municipality-mobile text-center' : 'header-municipality text-center'">
+      Distritos Afectados
+      <button class="muncipality-map" mat-icon-button>
+        <mat-icon (click)="OpenMapaGeneral()" matTooltip="Ver todas las incidencias">add_location</mat-icon>
+      </button>
+    </div>
+    <div [style.padding]="mobileQuery.matches ? '0 1em' : '0 2em'" class="table-responsive">
+      <table [style.width]="mobileQuery.matches ? '300px' : '100%'" class="municipalities table table-hover" id="tabla">
+        <thead>
+        <tr>
+          <th></th>
+          <th class="text-left" width="90%">Distrito</th>
+          <th class="text-right" width="10%">Incidencias</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr (click)="OnSelectRow(i, municipio)" *ngFor="let municipio of municipios; let i = index">
+          <td class="map-icon">
+            <button *ngIf="municipio.mapa" class="muncipality-map" mat-icon-button>
+              <mat-icon (click)="OpenMapaMunicipio(municipio)"
+                        matTooltip="Ver incidencias en {{municipio.nom_municipio}}">add_location
+              </mat-icon>
+            </button>
+          </td>
+          <td class="municipality" width="90%">
+            {{municipio.nom_municipio}}
+          </td>
+          <td class="municipality text-right" width="10%">{{municipio.nro_incidencias}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div [style.width]="mobileQuery.matches ? '60%' : '70%'" style="padding: 1.5em 2em;">
+    <h2>Incidencias</h2>
+    <div class="header-container">
+      <div class="table-responsive">
+        <table [style.width]="mobileQuery.matches ? '500px' : '100%'" class="table table-hover issue-tracker"
+               id="tabla_incidencias" name="tabla_incidencias">
+          <thead>
+          <tr>
+            <th class="text-left">Incidencia</th>
+            <th class="text-center">Tipo</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">F. Inicio</th>
+            <th class="text-center">F. Solución</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr (click)="OnSelectRowIncidencia(i, incidencia)"
+              *ngFor="let incidencia of incidencias; let i = index">
+            <td class="text-left incidence">{{incidencia.nom_incidencia}}</td>
+            <td class="text-center incidence">{{incidencia.tipo_incidencia}}</td>
+            <td class="text-center incidence">{{incidencia.estado_incidencia}}</td>
+            <td class="text-center incidence">{{incidencia.fecha_inicio | date : 'dd / MM / yyyy hh:mm:ss'}}</td>
+            <td class="text-center incidence">{{incidencia.fecha_estimada_sol | date : 'dd / MM / yyyy hh:mm:ss'}}</td>
+            <td class="map-icon">
+              <button *ngIf="incidencia.longitud !== 0 && incidencia.latitud !== 0" class="incidence-map"
+                      mat-icon-button>
+                <mat-icon (click)="OpenMapaIncidencia(incidencia)" matTooltip="Ver incidencia en mapa">add_location
+                </mat-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div *ngIf="areasAfectadas.length > 0" id="areas">
+      <br/>
+      <h2>Areas Afectadas</h2>
+      <div class="header-container">
+        <div class="table-responsive">
+          <table [style.width]="mobileQuery.matches ? '400px' : '100%'" class="table table-hover issue-tracker"
+                 id="tabla-areas" name="tabla-areas">
+            <thead>
+            <tr>
+              <th class="text-left">Área</th>
+              <th class="text-center">Tipo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let area of areasAfectadas;">
+              <td class="text-left">{{area.desc_area}}</td>
+              <td class="text-center">{{area.tipo_area}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

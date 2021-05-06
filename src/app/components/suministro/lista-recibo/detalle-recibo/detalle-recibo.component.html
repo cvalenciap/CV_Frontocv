@@ -1,0 +1,55 @@
+<div *ngIf="detalleConceptosPago">
+  <h2 clas="header" mat-dialog-title>
+    Detalle del Recibo N° {{data.receipt.recibo}}
+    <button (click)="dialogRef.close()" [tabIndex]="-1" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </h2>
+  <h2 [hidden]="diasVencidos===0" class="expired" mat-dialog-title>
+    Recibo Vencido({{diasVencidos}} dias(s) retraso)
+  </h2>
+  <div class="concept" *ngIf="!data.pendiente">Estado del recibo: <span style="font-weight: 600; color: black;">{{data.receipt.estado}}</span></div><br/>
+  <div class="title">Detalle de facturación - {{data.receipt.mes | date : 'MMMM yyyy' | titlecase}}</div>
+  <hr>
+  <div *ngFor="let pago of detalleConceptosPago" class="row concept-line">
+    <div class="col-lg-8 concept">{{pago.desc_concepto}}</div>
+    <div class="col-lg-4 amount">{{pago.monto_concepto | CustomeCurrency}}</div>
+  </div>
+  <div class="horizontal-line"></div>
+  <div class="montos" align="center" [style.display]="mobileQuery.matches ? 'inline-block' : 'flex'">
+    <div *ngIf="data.pendiente" [style.width]="mobileQuery.matches ? '100%' : '33%'" [style.margin]="mobileQuery.matches ? '' : '10px'">
+      <img src="assets/img/icon-calendar.svg" [style.opacity]="data.pendiente ? '1' : '0.64'">
+      <div class="vencimiento">
+        <label class="helper">Vencimiento</label>
+        <label class="info">{{data.receipt.vencimiento | date : 'dd/MM/yyyy'}}</label>
+      </div>
+    </div>
+    <div [style.width]="mobileQuery.matches ? '100%' : '33%'" [style.margin]="mobileQuery.matches ? '' : '10px'">
+      <img src="assets/img/icon-facturado.svg" [style.opacity]="data.pendiente ? '1' : '0.64'">
+      <span [class]="data.pendiente ? 'facturado' : 'facturado-paid'">
+        <label class="helper">Total Facturado</label>
+        <label class="info">{{data.receipt.total_fact | CustomeCurrency}}</label>
+      </span>
+    </div>
+    <div [style.width]="mobileQuery.matches ? '100%' : '33%'" [style.margin]="mobileQuery.matches ? '' : '10px'">
+      <img src="assets/img/icon-pagado.svg" [style.opacity]="data.pendiente ? '1' : '0.64'">
+      <span [class]="data.pendiente ? 'pagado' : 'pagado-paid'">
+        <label class="helper">Monto Pagado</label>
+        <label class="info">{{totalDetalle | CustomeCurrency}}</label>
+      </span>
+    </div>
+  </div>
+  <div *ngIf="mostrarPagar">
+    <div class="info-msg" *ngIf="showInfo">
+      <img src="assets/img/icon-info-msg-red.svg" style="margin-right: 5px;">{{info}}
+    </div>
+    <div class="payment-method">
+      <span>Medio de pago: </span>
+      <img src="assets/img/icon-visa.svg" style="margin-right: 5px;">
+    </div>
+    <div (click)="pagarRecibo()" class="pagar-recibos" [style.marginTop]="showInfo ? '' : '15px'">
+      PAGAR MI RECIBO
+    </div>
+  </div>
+</div>
+<span openDialog></span>

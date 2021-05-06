@@ -1,0 +1,14 @@
+<div *ngIf="count > 0" class="pagination">
+  <div class="description">{{ getMin() }} - {{ getMax() }} de {{count}} elementos</div>
+  <div class="numbers">
+    <button (click)="onPrev()" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }"
+            class="boton"><img src="assets/img/icon-before.svg">
+    </button>
+    <button (click)="onPage(pageNum)" *ngFor="let pageNum of getPages()"
+            [disabled]="page === pageNum" [ngClass]="{'active': pageNum === page, 'disabled': loading}"
+            class="boton">{{ pageNum }}</button>
+    <button (click)="onNext(true)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }"
+            class="boton"><img src="assets/img/icon-next.svg">
+    </button>
+  </div>
+</div>

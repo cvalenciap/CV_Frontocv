@@ -1,0 +1,9 @@
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Recibos Pendientes">
+    <app-recibos-pendientes (CargarPendientes)="finishPendientes()" *ngIf="selectedSupply"
+                            [supply]="selectedSupply" (PagarMultiple)="pagar($event)"></app-recibos-pendientes>
+  </mat-tab>
+  <mat-tab label="Recibos Pagados y Otros">
+    <app-recibos-pagados *ngIf="terminoPendientes" [supply]="selectedSupply" (CargarPagados)="terminoPagados()"></app-recibos-pagados>
+  </mat-tab>
+</mat-tab-group>

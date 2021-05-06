@@ -1,0 +1,55 @@
+@import 'variables';
+
+.pagination {
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.description {
+  float: left;
+  margin: 0.4em;
+  color: #009ff6;
+  font-family: $font-family, SansSerif;
+  font-weight: 500;
+}
+
+.numbers {
+  float: right;
+}
+
+.boton {
+  background-color: white;
+  color: #009ff6;
+  border: 2px solid #009ff6;
+}
+
+.boton:hover {
+  background-color: #e7f3fc;
+  color: #009ff6;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: #009ff6 !important;
+  color: white !important;
+  box-shadow: 0 1px 4px 0 rgba(84, 138, 201, 0.74) !important;
+}
+
+.boton {
+  border: none;
+  border-radius: 50% !important;
+  padding: 0.3em 0.6em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 6px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+a, button {
+  outline: 0;
+}

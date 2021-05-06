@@ -1,0 +1,40 @@
+@import 'variables';
+
+table {
+  width: 100%;
+}
+
+th {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.33;
+  color: var(--black-87);
+}
+
+td {
+  opacity: 0.54;
+  font-family: $font-family;
+  font-size: 14px;
+  line-height: 1.14;
+  color: var(--black);
+}
+
+.header-summary {
+  opacity: 0.54;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+  float: right;
+  padding: 0.85em;
+}
+
+.total-summary {
+  //opacity: 0.87;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 600;
+  color: #009BFF;
+  padding-left: 4em;
+}

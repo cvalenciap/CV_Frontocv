@@ -1,0 +1,28 @@
+<div *ngIf="totalPagar > 0">
+  <h2 clas="header" mat-dialog-title>
+    Detalle de Recibos Seleccionados
+    <button (click)="dialogRef.close()" [tabIndex]="-1" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </h2>
+  <div class="table-responsive">
+    <table class="table table-hover issue-tracker">
+      <thead>
+      <tr>
+        <th width="40%">Mes</th>
+        <th width="20%">Deuda</th>
+        <th width="40%">Tipo de Recibo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let recibo of data.selected">
+        <td width="40%">{{recibo.mes  | date : 'MMMM yyyy' | titlecase}}</td>
+        <td width="20%">{{recibo.deuda | CustomeCurrency}}</td>
+        <td width="40%">{{recibo.tipo_recibo}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-pagovisa [ammount]="totalPagar" [documentos]="documentos" [nis_rad]="data.nis_rad"></app-pagovisa>
+
+</div>

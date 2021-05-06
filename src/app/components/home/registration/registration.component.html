@@ -1,0 +1,332 @@
+<div class="container app-registration">
+  <img [src]="getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().logo_color" class="logo-sedapal">
+  <h1>Registro</h1>
+  <p>
+    Llena todos los campos obligatorios para registrarte y disfrutar de nuestro
+    renovada web
+  </p>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="form-row">
+      <div class="col">
+        <mat-form-field>
+          <input
+            formControlName="suministro"
+            matInput
+            maxlength="7"
+            placeholder="N° de suministro"
+            autocomplete="off"
+          />
+          <mat-hint
+            *ngIf="
+              !form.controls['suministro'].valid &&
+              !form.controls['suministro'].pending &&
+              !form.controls['suministro'].errors?.notFound
+            "
+            class="hint cursor-pointer"
+            dialogSRC="assets/img/suministro.svg"
+            openDialog="image"
+          >
+            ¿Dónde lo encuentro?
+          </mat-hint>
+          <mat-hint
+            *ngIf="form.controls['suministro'].pending; then: imgLoading"
+            class="pending"
+          ></mat-hint>
+          <mat-hint
+            *ngIf="form.controls['suministro'].errors?.notFound"
+            class="invalid"
+          >
+            {{ msgSuministro }}
+          </mat-hint>
+          <mat-hint *ngIf="form.controls['suministro'].valid" class="valid">
+            {{ msgSuministro }}
+          </mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field>
+          <input
+            [disableControl]="!suministroFound"
+            formControlName="referencia"
+            matInput
+            maxlength="10"
+            placeholder="Referencia de cobro"
+            autocomplete="off"
+          />
+          <mat-hint
+            *ngIf="
+              referenciasFound == 0 &&
+              ((form.controls['referencia'].invalid &&
+                !form.controls['referencia'].errors?.notFound &&
+                !form.controls['referencia'].pending))
+            "
+            class="hint cursor-pointer"
+            dialogSRC="assets/img/referencia.svg"
+            openDialog="image"
+          >¿Dónde lo encuentro?
+          </mat-hint
+          >
+          <mat-hint
+            *ngIf="
+              referenciasFound == 0 &&
+                ((form.controls['referencia'].pending &&
+                  (form.controls['referencia'].valid ||
+                    !form.controls['referencia'].errors)));
+              then: imgLoading
+            "
+            class="pending"
+          ></mat-hint>
+          <mat-hint *ngIf="referenciasFound == 1" class="invalid">
+            {{ referenciasError }}
+          </mat-hint>
+          <mat-hint *ngIf="referenciasFound == 2" class="valid">
+            {{ referenciasError }}
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <mat-form-field>
+          <mat-select
+            [disableControl]="referenciasFound < 2"
+            formControlName="tipodoc"
+            placeholder="Tipo de documento"
+          >
+            <mat-option
+              *ngFor="let documento of documentos"
+              [value]="documento.idTipoDocumento"
+            >
+              {{ documento.tipoDocumento }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <input
+            [disableControl]="referenciasFound < 2"
+            [maxLength]="maxNroDoc"
+            formControlName="nrodoc"
+            matInput
+            placeholder="N° de documento"
+            autocomplete="off"
+          />
+          <mat-hint
+            *ngIf="form.controls['nrodoc'].errors?.pattern"
+            class="invalid"
+          >
+            Ingrese un N° de documento válido
+          </mat-hint>
+          <mat-hint
+            *ngIf="form.controls['nrodoc'].pending; then: imgLoading"
+            class="pending"
+          ></mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div *ngIf="!isRUC"
+           class="col">
+        <mat-form-field>
+          <input
+            [disableControl]="referenciasFound < 2"
+            formControlName="nombres"
+            matInput
+            placeholder="Nombres"
+            autocomplete="off"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <input
+            *ngIf="!isRUC"
+            [disableControl]="referenciasFound < 2"
+            formControlName="apellido1"
+            matInput
+            placeholder="Apellido Paterno"
+            autocomplete="off"
+          />
+          <input
+            *ngIf="isRUC"
+            [disableControl]="referenciasFound < 2"
+            formControlName="apellido1"
+            matInput
+            placeholder="Razón Social"
+            autocomplete="off"
+          />
+        </mat-form-field>
+      </div>
+      <div *ngIf="!isRUC"
+           class="col">
+        <mat-form-field>
+          <input
+            [disableControl]="referenciasFound < 2"
+            formControlName="apellido2"
+            matInput
+            placeholder="Apellido Materno"
+            autocomplete="off"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <mat-form-field>
+          <input
+            [disableControl]="referenciasFound < 2"
+            formControlName="telefono1"
+            matInput
+            maxlength="10"
+            placeholder="Teléfono"
+            type="tel"
+            autocomplete="off"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <!-- <input
+            [disableControl]="referenciasFound < 2"
+            formControlName="correo"
+            matInput
+            placeholder="Correo electrónico"
+            type="email"
+            autocomplete="off"
+          />
+          <mat-error *ngIf="form.controls['correo'].errors?.email" style="font-weight:bold;">
+              INGRESE UN CORREO VÁLIDO PARA INGRESAR A LA APLICACIÓN
+          </mat-error> -->
+          <input
+            formControlName="correo"
+            matInput
+            placeholder="Correo electrónico"
+            type="email"
+            autocomplete="off"
+          />
+          <mat-error style="font-weight:bold;">
+            PARA UN REGISTRO EXITOSO, INGRESE UN CORREO VALIDO
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <mat-form-field>
+          <input
+            #contrasena
+            [disableControl]="referenciasFound < 2"
+            formControlName="contrasena"
+            matInput
+            maxlength="18"
+            placeholder="Contraseña"
+            type="password"
+            autocomplete="off"
+          />
+          <app-toggle-password
+            [input]="contrasena"
+            matSuffix
+          ></app-toggle-password>
+          <mat-hint>
+            Debe ser mayor a 8 digitos, tener mayúscula, minúscula y número
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <input
+            #contrasena2
+            [disableControl]="referenciasFound < 2"
+            formControlName="contrasena2"
+            matInput
+            maxlength="18"
+            placeholder="Repetir contraseña"
+            type="password"
+            autocomplete="off"
+          />
+          <app-toggle-password
+            [input]="contrasena2"
+            matSuffix
+          ></app-toggle-password>
+          <mat-hint>
+            Debe ser mayor a 8 digitos, tener mayúscula, minúscula y número
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <p class="col" style="text-align: center; font-size: 12px; color: #009ff6;">
+        <strong>Al término del registro recibirás un código de verificación en tu correo, el cual será solicitado la primera vez que ingreses al aplicativo.</strong>
+      </p>
+    </div>
+
+    <div class="form-row mt-5">
+      <div class="col">
+        <mat-checkbox
+          [disableControl]="referenciasFound < 2"
+          [ngClass]="{ 'invalid-checkbox': validateTerminos }"
+          formControlName="terminos"
+        >
+          Acepto los
+          <label
+            (onEvent)="acceptTermsConditions($event)"
+            class="link"
+            dialogSRC="termsConditions"
+            openDialog="content"
+          >Términos y Condiciones
+          </label>
+        </mat-checkbox>
+      </div>
+      <div class="col">
+        <mat-checkbox
+          [disableControl]="referenciasFound < 2"
+          formControlName="notificaciones"
+        >
+          Recibir correos y notificaciones de Sedapal
+        </mat-checkbox>
+      </div>
+    </div>
+    <div class="form-row">
+      <ngx-recaptcha2 #captchaElem [hl]="lang"
+                      [siteKey]="siteKey"
+                      [size]="size"
+                      [theme]="theme"
+                      [type]="type"
+                      class="re-captcha"
+                      formControlName="reCaptcha">
+      </ngx-recaptcha2>
+    </div>
+    <div class="form-row mt-5">
+      <div class="col text-center">
+        <button
+          [disabled]="referenciasFound < 2 || loading"
+          color="primary"
+          mat-flat-button
+          type="submit"
+        >
+          Registrarme
+        </button>
+        <br/>
+        <div *ngIf="loading; then: imgLoading"></div>
+      </div>
+    </div>
+    <div *ngIf="error" class="form-row mt-3">
+      <div class="col text-center">
+        <div class="alert alert-danger">{{ error }}</div>
+      </div>
+    </div>
+  </form>
+  <p class="black-87 font-size-12">
+    ¿Ya tienes una cuenta?
+    <a [routerLink]="['/iniciar-sesion']">Iniciar sesión</a>
+  </p>
+</div>
+
+<ng-template #imgLoading>
+  <img
+    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+  />
+</ng-template>

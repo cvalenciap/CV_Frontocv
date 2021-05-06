@@ -1,0 +1,54 @@
+<h2 clas="header" mat-dialog-title>
+  Histórico de Consumo
+  <button (click)="dialogRef.close()" [tabIndex]="-1" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</h2>
+
+<h2 class="header-consumption" mat-dialog-title>
+  <table>
+    <thead>
+    <tr>
+      <th width="20%">N° Suministro</th>
+      <th width="20%">Estado</th>
+      <th width="60%">Dirección</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td width="20%">{{data.nis_rad}}</td>
+      <td width="20%">{{data.estado}}</td>
+      <td width="60%">{{data.direccion}}</td>
+    </tr>
+    </tbody>
+  </table>
+</h2>
+
+<div *ngIf="dataGrafico">
+  <mat-tab-group animationDuration="0ms" (selectedTabChange)="tabChanged($event)">
+    <mat-tab label="Importe de Consumo">
+      <div style="display: block">
+        <canvas id="canvasSoles" baseChart [datasets]="barChartSolesData" [labels]="barChartLabels"
+                [options]="barChartOptionsSoles"
+                [legend]="true" [colors]="barChartColors" [chartType]="'bar'"></canvas>
+      </div>
+    </mat-tab>
+    <mat-tab label="Metros Cubicos">
+      <div style="display: block">
+        <canvas id="canvasMetros" baseChart [datasets]="barChartMetrosData" [labels]="barChartLabels"
+                [options]="barChartOptionsMetros"
+                [legend]="true" [colors]="barChartColors" [chartType]="'bar'"></canvas>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <br/>
+  <div class="btn-descarga" (click)="downloadCanvas($event)">
+    <img src="assets/img/icon-descarga-png.svg" height="12px">
+    <span>Descargar gráfico</span>
+  </div>
+  <!--<button class="btn-descarga" mat-flat-button color="primary" type="submit">
+    <img src="assets/img/icon-descarga-png.svg" height="12px" >
+    Descargar gráfico
+  </button>-->
+</div>
+<span openDialog></span>

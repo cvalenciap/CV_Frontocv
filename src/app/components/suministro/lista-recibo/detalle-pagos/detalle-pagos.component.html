@@ -1,0 +1,36 @@
+<div *ngIf="detallePagosRecibo">
+  <h2 clas="header" mat-dialog-title>
+    Amortizaciones y Pagos - Referencia de Cobro N° {{data.receipt.recibo}}
+    <button (click)="dialogRef.close()" [tabIndex]="-1" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </h2>
+  <div class="table-responsive">
+    <table class="table table-hover issue-tracker">
+      <thead>
+      <tr>
+        <th width="15%">Tipo Doc.</th>
+        <th width="15%">Fecha</th>
+        <th width="10%">Hora</th>
+        <th width="10%">Forma</th>
+        <th width="15%">Agencia</th>
+        <th width="20%">Sucursal</th>
+        <th width="15%">Monto</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let detalle of detallePagosRecibo">
+        <td width="15%">{{detalle.tipo_doc}}</td>
+        <td width="15%">{{detalle.fecha_pago | date : 'dd / MM / yyyy'}}</td>
+        <td width="10%">{{detalle.hora_pago}}</td>
+        <td width="10%">{{detalle.forma_pago}}</td>
+        <td width="15%">{{detalle.nom_agencia}}</td>
+        <td width="20%">{{detalle.nom_sucursal}}</td>
+        <td width="15%" class="text-right">{{detalle.monto_pago | CustomeCurrency}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="header-summary">Monto Pagado <span class="total-summary">{{totalDetalle | CustomeCurrency}}</span></div>
+</div>

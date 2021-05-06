@@ -1,0 +1,65 @@
+@import 'variables';
+
+table {
+  @extend %tablaModal;
+}
+
+table td {
+  @extend %tdModal;
+}
+
+table th {
+  @extend %thModal;
+}
+
+table tbody {
+  @extend %tbodyModal;
+}
+
+h2 {
+  font-family: $font-family;
+  font-size: 1.2rem;
+  line-height: 1.33;
+  font-weight: 400;
+  color: var(--black-87);
+  padding-left: .4em;
+}
+
+.header-container {
+  @extend %container;
+}
+.mat-menu-item-highlighted:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item:hover:not([disabled]) {
+  background-color: #e2f0ff;
+}
+tr:hover td{
+  background-color: #e2f0ff;
+}
+
+a {
+  text-decoration: none;
+}
+.receipt-menu {
+  margin-left: 10px;
+  color: #009ff6;
+}
+
+.label-nuevo {
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #009ff6;
+  margin-left: 10px;
+}
+.nuevo-parametro {
+  cursor: pointer;
+  background-color: #009FF6;
+  padding: 5px 8px;
+  border-radius: 100%;
+  margin-left: 10px;
+  height: 28px;
+  width: 32px;
+}

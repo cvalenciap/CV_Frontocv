@@ -1,0 +1,70 @@
+@import 'variables';
+
+.intro {
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right top;
+  color: #fff;
+  display: flex;
+  height: 100%;
+  position: fixed;
+  //width: 41.67%;
+  width: 45%;
+
+  .container {
+    max-width: 300px;
+    text-align: center;
+
+    > p {
+      font-size: 20px;
+      font-stretch: normal;
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1.33;
+      margin: 20px 0 60px;
+    }
+
+    > .carousel {
+      img {
+        margin: 0 auto;
+        height: 50px;
+      }
+
+      .carousel-caption {
+        left: 0;
+        margin: 20px 0 0;
+        position: relative;
+        font-size: 18px;
+      }
+
+      .carousel-indicators li {
+        border-radius: 5px;
+        height: 5px;
+        width: 5px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .intro {
+    .container {
+      > p {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .intro {
+    .container {
+      max-width: 350px;
+
+      > p {
+        font-size: 20px;
+      }
+    }
+  }
+}

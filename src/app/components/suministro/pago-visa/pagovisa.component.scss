@@ -1,0 +1,28 @@
+@import "variables";
+
+.concept-line {
+  margin: .5em 0;
+}
+
+.header-summary {
+  opacity: 0.54;
+  font-family: $font-family;
+  font-size: 14px;
+  padding: 0;
+  color: var(--black);
+}
+
+.detail-summary {
+  opacity: 0.87;
+  font-family: $font-family;
+  font-size: 14px;
+  padding: 0;
+  font-weight: 600;
+  text-align: right;
+  color: var(--black);
+}
+
+form {
+  text-align: center;
+  margin-top: .5em;
+}

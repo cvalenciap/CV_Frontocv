@@ -1,0 +1,31 @@
+<h2 matDialogTitle>
+  Areas Afectadas
+  <button (click)="dialogRef.close()" [tabIndex]="-1" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <br>
+  <span class="distrito">{{data.distrito}}</span>
+</h2>
+<table align="center" style="margin-bottom: 30px">
+  <thead>
+    <th>Área</th>
+    <th>Tipo</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let area of data.incidence.areas_afectadas">
+      <td>{{area.desc_area}}</td>
+      <td>{{area.tipo_area}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="horizontal-line"></div>
+<agm-map [latitude]="data.incidence.latitud" [longitude]="data.incidence.longitud" [zoom]="zoom"
+         [disableDefaultUI]="false" [zoomControl]="false">
+  <agm-marker [latitude]="data.incidence.latitud" [longitude]="data.incidence.longitud">
+    <agm-info-window>
+      <strong>{{data.incidence.nom_incidencia}}</strong><br/>
+      <small>Fecha incidencia: {{data.incidence.fecha_inicio | date : 'dd / MM / yyyy hh:mm:ss'}}</small><br/>
+      <small>Fecha estimada sol: {{data.incidence.fecha_estimada_sol | date : 'dd / MM / yyyy hh:mm:ss'}}</small>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

@@ -1,0 +1,95 @@
+<span openDialog></span>
+<h2 mat-dialog-title>{{titulo}}
+  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close()" [tabIndex]="-1">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="categoria"
+          placeholder="Categoria"
+          [ngClass]="data.tipo !== 'register' ? 'deshabilitado' : 'habilitado'"
+          [readonly]="data.tipo !== 'register'"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="clase"
+          placeholder="Clase"
+          [ngClass]="data.tipo !== 'register' ? 'deshabilitado' : 'habilitado'"
+          [readonly]="data.tipo !== 'register'"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row" *ngIf="data.tipo === 'detail'">
+    <div class="col">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="fAlta"
+          placeholder="Fecha Alta"
+          class="deshabilitado"
+          readonly
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="valor"
+          placeholder="Valor"
+          [ngClass]="data.tipo === 'detail' ? 'deshabilitado' : 'habilitado'"
+          [readonly]="data.tipo === 'detail'"
+          maxlength="48"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col text-right">
+      <mat-slide-toggle formControlName="paramCom" [ngClass]="data.tipo === 'detail' ? 'deshabilitado' : 'habilitado'"
+                        [disableControl]="data.tipo === 'detail'" *ngIf="admin_etic !== 0">
+        <span>Parámetro Comercial</span>
+      </mat-slide-toggle>
+    </div>
+    <div class="col text-right" *ngIf="data.tipo !== 'register'">
+      <mat-slide-toggle formControlName="activo" [ngClass]="data.tipo" [disableControl]="!habilitar"><span
+        [innerHTML]="activo ? 'Activo' : 'Inactivo'"></span></mat-slide-toggle>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col text-center">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        *ngIf="habilitar"
+      >
+        Guardar
+      </button>
+      <br/>
+    </div>
+  </div>
+  <div *ngIf="error" class="form-row mt-3">
+    <div class="col text-center">
+      <div class="alert alert-danger">{{ error }}</div>
+    </div>
+  </div>
+</form>

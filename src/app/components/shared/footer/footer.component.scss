@@ -1,0 +1,23 @@
+@import "variables";
+
+.footer {
+  text-align: center;
+  font-family: $font-family;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.28px;
+  text-align: center;
+  color: #697589;
+  position: relative;
+  /*position: absolute;
+  bottom: 0;
+  width: 100%;*/
+  transition: 350ms;
+}
+
+.icon-social {
+  padding: 5px;
+}

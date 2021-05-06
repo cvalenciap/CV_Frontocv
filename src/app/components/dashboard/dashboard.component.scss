@@ -1,0 +1,124 @@
+@import 'variables';
+
+.ocv-container {
+  display: inline-flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: space-between;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: $background-color;
+}
+a, button {
+  outline: 0;
+}
+
+.ocv-is-mobile .ocv-toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+.ocv-sidenav-container {
+  flex: 1;
+  background-image: linear-gradient(to top, var(--azure), #0085bc 48%, var(--ocean-blue));
+}
+
+.ocv-is-mobile .ocv-sidenav-container {
+  flex: 1 0 auto;
+}
+
+.ocv-sidenav {
+  background-color: #006eaa;
+  position: fixed;
+  padding-top: 115px;
+}
+
+::ng-deep .mat-drawer-container {
+  background-color: #edf1f8;
+}
+
+::ng-deep .mat-drawer-content {
+  background-color: #edf1f8;
+}
+
+::ng-deep mat-sidenav .mat-drawer-inner-container {
+  overflow: hidden;
+  display: grid;
+}
+
+.icon-menu {
+  color: white;
+  cursor: pointer;
+  flex: 1;
+}
+
+.menu-icon-svg {
+  width: 16px;
+  margin-right: 18px;
+}
+
+.menu-icon-svg-min {
+  width: 16px;
+  margin: 0 auto;
+}
+
+.text-icon {
+  font-size: 15px;
+  font-family: $font-family;
+}
+
+.active-menu {
+  background-color: #009ff6 !important;
+  cursor: auto !important;
+  border-left: solid 5px #54cc48;
+  width: 100%;
+  margin-left: 0px !important;
+  color: white;
+}
+
+.link-menu {
+  cursor: pointer;
+  height: 44px;
+  padding: 8px 20px;
+  margin-left: 5px;
+  margin-bottom: 15px !important;
+  color: white;
+}
+
+.link-menu-min {
+  cursor: pointer;
+  height: 44px;
+  padding: 8px 15px;
+  margin-left: 5px;
+  color: white;
+}
+
+.link-menu:hover{
+  cursor: pointer;
+  height: 44px;
+  padding: 8px 20px;
+  margin-left: 5px;
+  color: white;
+  background-color: #007abc;
+}
+
+.fondo {
+  align-self: end;
+  padding-bottom: 33px;
+}
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  visibility: hidden !important;
+}
+
+::ng-deep .toast-top-right {
+  top: 130px !important;
+}
+::ng-deep .toast-container .toast {
+  width: 450px !important;
+}
+::ng-deep .link-incidencia {
+ text-decoration: underline;
+}

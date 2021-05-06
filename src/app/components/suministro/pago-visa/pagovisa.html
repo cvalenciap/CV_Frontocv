@@ -1,0 +1,37 @@
+<div class="row concept-line">
+  <div class="col-lg-8 header-summary">Monto a Pagar</div>
+  <div class="col-lg-4 detail-summary">{{ammount | CustomeCurrency}}</div>
+</div>
+<div class="row concept-line">
+  <div class="col-lg-8 header-summary">Comisión Visa</div>
+  <div class="col-lg-4 detail-summary">{{comision | CustomeCurrency}}</div>
+</div>
+<!-- actualizacion mastercard -->
+<form action="http://11.1.12.35:8080/api/general/test-visa?session={{session}}&liquidacion={{liquidacion}}&nis_rad={{nis_rad}}" method="POST">
+  <script-hack *ngIf="filtersLoaded | async"
+               [src]="scriptJS"
+               type="text/javascript"
+               [sessiontoken]="session"
+               [merchantid]="merchantId"
+               merchantlogo='images/themes/akdemic/logo-alt.png'
+               merchantname='SEDAPAL'
+               formbuttoncolor='#c71a1a'
+               [amount]="montoFinal"
+               [purchasenumber]='purchaseNumber'>
+  </script-hack>
+</form>
+<!-- <form id="formVisa"
+  (ngSubmit)="onSubmit()"
+  action="{{urlPOST}}?liquidacionEnchufate={{liquidacionEnchufate}}&liquidacionJob={{liquidacionJob}}&nis_rad={{nis_rad}}&amount={{total}}&auth_correo={{correo}}&flagChannel={{flagChannel}}&listaRegistros={{listaRegistros}}"
+  method="POST">
+  <script-hack *ngIf="filtersLoaded | async" 
+              [src]="scriptJS"
+              type="text/javascript"
+              [sessiontoken]="session"
+              [merchantid]="merchantId"
+              merchantname='SEDAPAL'
+              formbuttoncolor='#c71a1a'
+              [amount]="total"
+              [purchasenumber]='purchaseNumber'>
+  </script-hack>
+</form> -->

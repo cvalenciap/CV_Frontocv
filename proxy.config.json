@@ -1,0 +1,6 @@
+{
+  "/api/*": {
+    "target": "http://webapp16.sedapal.com.pe:8080",
+    "secure": true
+  }
+}

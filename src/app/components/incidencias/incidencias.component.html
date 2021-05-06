@@ -1,0 +1,84 @@
+<div class="container-vacio" *ngIf="municipios.length == 0 && !loading;">
+    <div class="no-data">
+        <img src="assets/img/icon-ok.svg" width="144" height="144" class="image">
+        <div class="titulo">
+            No tienes incidencias en tu zona
+        </div>
+        <div class="descripcion">
+            Sedapal agradece tu visita
+        </div>
+    </div>
+</div>
+<div *ngIf="showMunicipios && !loading; else incidencia">
+    <div *ngIf="municipios.length > 1">
+        <div style="float: right">
+            <a (click)="OpenMapaGeneral()">
+                <span class="label-mapa">Vista en mapa</span>
+                <img class="global-map" src="assets/img/icon-map-white.svg">
+            </a>
+        </div>
+        <br>
+        <br>
+    </div>
+    <div [style.marginTop]="municipios.length > 1 ? '' : '20px'">
+        <div class="distrito-container" *ngFor="let municipio of municipios; let i  =index">
+            <!--<div class="label-distrito">Municipio</div>-->
+            <!--<div class="distrito">{{municipio.nom_municipio}}</div>-->
+            <div class="label-distrito">{{municipio.nom_municipio}}</div>
+            <br>
+            <div class="label-distrito">N° de Incidencias: <span class="distrito">{{municipio.nro_incidencias}}</span></div>
+            <br>
+            <button class="btn-incidencia" [style.display]="municipio.mapa ? '' : 'none'" (click)="OpenMapaMunicipio(municipio)" (mouseover)="overMapa[i] = true" (mouseout)="overMapa[i] = false">
+        <img [src]="overMapa[i] ? './assets/img/icon-map-white.svg' : './assets/img/icon-map.svg'"
+          style="margin-right: 8px" height="25px">
+        <span style="margin-right: 8px; vertical-align: middle;">Ver Mapa</span>
+      </button>
+            <button class="btn-incidencia" style="float: right" (click)="viewDetail(municipio)" (mouseover)="over[i] = true" (mouseout)="over[i] = false">
+        <img [src]="over[i] ? './assets/img/icon-detalle-white.svg' : './assets/img/icon-detalle.svg'"
+          style="margin-right: 8px" height="12px">
+        <span style="margin-right: 8px; vertical-align: middle;">Ver Detalle</span>
+      </button>
+        </div>
+    </div>
+</div>
+<ng-template #incidencia>
+    <div style="padding: 0 2em;">
+        <div>
+            <a (click)="showMunicipios = true">
+                <img class="btn-back" src="assets/img/flecha-atras.svg">
+                <span class="label-mapa">Atrás</span>
+            </a>
+        </div>
+        <br>
+        <h2>Incidencias</h2>
+        <div class="header-container">
+            <div class="table-responsive">
+                <table class="table table-hover issue-tracker" id="tabla_incidencias" name="tabla_incidencias">
+                    <thead class="table-head">
+                        <tr>
+                            <th>Incidencia</th>
+                            <th>Tipo de Incidencia</th>
+                            <th>Estado</th>
+                            <th>F. Inicio</th>
+                            <th>F. Solución</th>
+                            <th class="text-center">Áreas Afectadas</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr *ngFor="let incidencia of incidencias">
+                            <td><span class="text">{{incidencia.nom_incidencia}}</span></td>
+                            <td><span class="text">{{incidencia.tipo_incidencia}}</span></td>
+                            <td><span class="text">{{incidencia.estado_incidencia}}</span></td>
+                            <td><span class="text">{{incidencia.fecha_inicio | date : 'dd / MM / yyyy hh:mm:ss'}}</span></td>
+                            <td><span class="text">{{incidencia.fecha_estimada_sol | date : 'dd / MM / yyyy hh:mm:ss'}}</span></td>
+                            <td align="center">
+                                <img src="assets/img/icon-map.svg" style="cursor: pointer; opacity: 1 !important;" (click)="OpenMapaIncidencia(incidencia)" *ngIf="incidencia.longitud !== 0 && incidencia.latitud !== 0; else noIcon">
+                                <ng-template #noIcon>-</ng-template>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,76 @@
+<span openDialog></span>
+<h2 mat-dialog-title>{{titulo}}
+  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close()" [tabIndex]="-1">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col">
+      Ingresar el código de verificación remitido a tu correo.
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <mat-form-field style="width:23%;">
+        <input class="verify"
+          matInput
+          formControlName="codeVerify1"
+          [readonly]="false"
+          maxlength="1"
+          autocomplete="off"
+        />
+      </mat-form-field>&nbsp; 
+      <mat-form-field style="width:23%;">
+        <input class="verify"
+        matInput
+        formControlName="codeVerify2"
+        [readonly]="false"
+        maxlength="1"
+        autocomplete="off"
+        />
+      </mat-form-field>&nbsp; 
+      <mat-form-field style="width:23%;">
+        <input class="verify"
+          matInput
+          formControlName="codeVerify3"
+          [readonly]="false"
+          maxlength="1"
+          autocomplete="off"
+        />
+      </mat-form-field>&nbsp; 
+      <mat-form-field style="width:23%;">
+        <input class="verify"
+          matInput
+          formControlName="codeVerify4"
+          [readonly]="false"
+          maxlength="1"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col text-center">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        *ngIf="habilitar"
+      >
+        Validar
+      </button>
+      <br/>
+    </div>
+  </div>
+  <div class="form-row">
+      <p class="black-87 font-size-12">
+          ¿No ha llegado el correo de confirmación? <a style="color:#007bff" (click)="reenviar()">Reenvíar confirmación</a>
+      </p>
+  </div>
+  <div *ngIf="error" class="form-row mt-3">
+    <div class="col text-center">
+      <div class="alert alert-danger">{{ error }}</div>
+    </div>
+  </div>
+</form>

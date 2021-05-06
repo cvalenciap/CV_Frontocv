@@ -1,0 +1,107 @@
+<span openDialog (onEvent)="regresar()"></span>
+<div class="row">
+  <div class="col-md-4">
+    <div class="header-container">
+      <span class="texto supply-label">N° de suministro</span><span class="texto supply"> {{nis_rad}}</span>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="row" id="container">
+  <div class="col-md-6">
+    <h2 class="texto header">RECIBOS A PAGAR</h2>
+    <div class="header-container">
+      <div class="table-responsive">
+        <table id="tabla-recibos" class="table table-hover issue-tracker">
+          <thead>
+          <tr>
+            <th width="19%">Mes</th>
+            <th width="15%">Vencimiento</th>
+            <th width="10%">Deuda</th>
+            <th width="25%">Tipo de Recibo</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let recibo of recibos;">
+            <td width="19%">{{recibo.mes | date : 'MMMM yyyy' | titlecase}}</td>
+            <td width="15%">{{recibo.vencimiento | date : 'dd / MM / yyyy'}}</td>
+            <td width="10%">{{recibo.deuda | CustomeCurrency}}</td>
+            <td width="25%">{{recibo.tipo_recibo}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="info-msg" *ngIf="mostrarMsj">
+      <img src="assets/img/icon-info-msg-red.svg" style="margin-right: 5px;">{{msj}}
+    </div>
+    <div class="alarm-msg">
+      <img src="assets/img/icon-alarm.svg" style="margin-right: 5px;">RECUERDE NO CERRAR LA VENTANA HASTA QUE LA TRANSACCIÓN DE PAGO HAYA CONCLUIDO
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h2 class="texto header">RESUMEN DE PAGO</h2>
+    <div class="header-container" style="overflow: hidden">
+      <div class="row concept-line">
+        <div class="col-lg-8 texto concept">Subtotal</div>
+        <div class="col-lg-4 texto amount">{{subtotal | CustomeCurrency}}</div>
+      </div>
+      <div class="row concept-line" *ngIf="validComision">
+        <div class="col-lg-8 texto concept">Pago de comisión con tarjeta</div>
+        <div class="col-lg-4 texto amount">{{comisionVisa | CustomeCurrency}}</div>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="row concept-line">
+        <div class="col-lg-8 texto total-label">Total</div>
+        <div class="col-lg-4 texto total">{{total | CustomeCurrency}}</div>
+      </div>
+      <div class="row concept-line">
+        <div class="col-lg-8 texto concept">Código de liquidación</div>
+        <!-- actualizacion mastercard -->
+        <!-- <div class="col-lg-4 texto amount">{{liquidacion}}</div> -->
+        <div class="col-lg-4 texto amount">{{purchaseNumber}}</div>
+        <!--  -->
+      </div>
+      <div class="horizontal-line"></div>
+      <!-- actualizacion mastercard -->
+      <form id="formVisa"
+        (ngSubmit)="onSubmit()"
+        action="{{urlPOST}}?liquidacion={{liquidacion}}&nis_rad={{nis_rad}}&amount={{total}}&auth_correo={{correo}}&flagChannel={{flagChannel}}&listaRegistros={{listaRegistros}}"
+        method="POST">
+      <!-- <form id="formVisa"
+        (ngSubmit)="onSubmit()"
+        action="{{urlPOST}}?liquidacionEnchufate={{liquidacionEnchufate}}&liquidacionJob={{liquidacionJob}}&nis_rad={{nis_rad}}&amount={{total}}&auth_correo={{correo}}&flagChannel={{flagChannel}}&listaRegistros={{listaRegistros}}"
+        method="POST"> -->
+        <!--  -->
+        <!--<script-hack *ngIf="filtersLoaded | async"
+                    [src]="scriptJS"
+                    type="text/javascript"
+                    [sessiontoken]="session"
+                    [merchantid]="merchantId"
+                    merchantname='SEDAPAL'
+                    formbuttoncolor='#c71a1a'
+                    [amount]="total"
+                    [purchasenumber]='purchaseNumber'>
+        </script-hack>-->
+        <script-hack *ngIf="filtersLoaded | async" 
+                    [src]="scriptJS"
+                    type="text/javascript"
+                    [sessiontoken]="session"
+                    [merchantid]="merchantId"
+                    merchantname='SEDAPAL'
+                    formbuttoncolor='#c71a1a'
+                    [amount]="total"
+                    [purchasenumber]='purchaseNumber'>
+        </script-hack>
+        <!-- <button mat-flat-button color="primary" type="submit" *ngIf="validarButton">VISA</button> -->
+      </form>
+    </div>
+    <br/>
+    <div class="col-md-12">
+      <a (click)="regresar()" style="float: right">
+        <img class="btn-back" src="assets/img/flecha-atras.svg">
+        <span class="label-back">REGRESAR</span>
+      </a>
+    </div>
+  </div>
+</div>

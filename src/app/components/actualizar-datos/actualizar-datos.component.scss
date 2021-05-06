@@ -1,0 +1,32 @@
+@import 'variables';
+
+h2 {
+  font-family: $font-family;
+  font-size: 1.2rem;
+  line-height: 1.33;
+  font-weight: 400;
+  color: var(--black-87);
+  padding-left: .4em;
+}
+
+.header-container {
+  @extend %container;
+}
+
+p {
+  font-family: $font-family, SansSerif;
+}
+
+.detail {
+  background: white;
+  padding: 1em;
+}
+
+.header {
+  font-weight: 800;
+}
+
+.data {
+  margin: auto;
+  color: gray;
+}

@@ -1,0 +1,129 @@
+@import 'variables';
+
+.modal-content {
+  width: 1000px;
+  left: 0px;
+}
+
+.modal-header {
+  width: 1000px;
+}
+
+.modal-body {
+  width: 1000px;
+  height: 650px;
+}
+
+.modal-dialog {
+  width: 1000px;
+  height: 650px;
+}
+
+table tr {
+  cursor: pointer;
+}
+
+table td {
+  font-size: $font-size;
+  color: gray;
+  border-top: none;
+  border-bottom: solid 1px rgb(222, 226, 230);
+}
+
+table th {
+  font-size: $font-size;
+  color: black;
+  background-color: white;
+}
+
+.header {
+  font-family: $font-family, SansSerif;
+  color: black;
+  font-weight: 800;
+  font-size: $font-size;
+}
+
+
+.selected {
+  border-left: solid 5px $ocean-blue;
+}
+
+.municipality-button {
+  display: block;
+  margin: auto 0;
+}
+
+h2 {
+  font-family: $font-family;
+  font-size: 1.2rem;
+  line-height: 1.33;
+  font-weight: 400;
+  color: var(--black-87);
+  padding-left: .4em;
+}
+
+.header-container {
+  @extend %container;
+}
+
+*:focus {
+  outline: none;
+}
+
+.header-municipality {
+  font-family: $font-family;
+  font-size: 1.2rem;
+  line-height: 1.33;
+  font-weight: 600;
+  color: var(--black-87);
+  background-color: #edf1f8;
+  padding: 0.5em 1.1em 0.5em 1.1em;
+}
+
+.header-municipality-mobile {
+  font-family: $font-family;
+  font-size: 1.2rem;
+  line-height: 1.33;
+  font-weight: 600;
+  color: var(--black-87);
+  background-color: #edf1f8;
+  padding: 0.2em 1.1em 0.4em 1.4em;
+}
+
+.municipality {
+  background: white;
+  vertical-align: middle;
+}
+
+.municipalities {
+  border-radius: .5em;
+  box-shadow: 0 2px 4px 0 rgba(143, 143, 143, 0.5);
+}
+
+span {
+  display: inline-block;
+}
+
+.incidence {
+  vertical-align: middle;
+}
+
+.incidence-map {
+  margin: 0;
+  padding: 0;
+}
+
+.municipality-map {
+  margin: 0;
+  padding: 0;
+}
+
+.mat-icon {
+  margin: 0;
+}
+
+.map-icon {
+  padding: 0;
+  background-color: white;
+  vertical-align: middle;
+}

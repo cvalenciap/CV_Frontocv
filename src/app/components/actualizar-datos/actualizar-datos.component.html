@@ -1,0 +1,252 @@
+<span openDialog></span>
+<div style="padding: 0.5em 2em">
+  <h2>Actualización de Datos</h2>
+  <div class="header-container">
+    <p>
+      Ingrese sus datos para tener una mejor experiencia
+    </p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field>
+            <mat-select
+              formControlName="tiposol"
+              placeholder="Tipo de solicitante"
+            >
+              <mat-option
+                *ngFor="let solicitante of solicitantes"
+                [value]="solicitante.idTipoSolicitante"
+              >
+                {{ solicitante.tipoSolicitante }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field>
+            <mat-select
+              formControlName="tipodoc"
+              placeholder="Tipo de documento"
+            >
+              <mat-option
+                *ngFor="let documento of documentos"
+                [value]="documento.idTipoDocumento"
+              >
+                {{ documento.tipoDocumento }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="nrodoc"
+              placeholder="N° de documento"
+              [maxLength]="maxNroDoc"
+              autocomplete="off"
+            />
+            <mat-hint
+              class="invalid"
+              *ngIf="form.controls['nrodoc'].errors?.pattern"
+            >
+              Ingrese un N° de documento válido
+            </mat-hint>
+            <mat-hint
+              class="pending"
+              *ngIf="form.controls['nrodoc'].pending; then: imgLoading"
+            ></mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col"
+             *ngIf="!isRUC">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="nombres"
+              placeholder="Nombres"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input
+              *ngIf="!isRUC"
+              matInput
+              formControlName="apellido1"
+              placeholder="Apellido Paterno"
+              autocomplete="off"
+            />
+            <input
+              *ngIf="isRUC"
+              matInput
+              formControlName="apellido1"
+              placeholder="Razón Social"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col"
+             *ngIf="!isRUC">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="apellido2"
+              placeholder="Apellido Materno"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="telefono1"
+              placeholder="Teléfono 1"
+              type="tel"
+              maxlength="9"
+              autocomplete="off"
+            />
+            <mat-hint
+              class="invalid"
+              *ngIf="form.controls['telefono1'].errors?.pattern"
+            >
+              Ingrese un N° de teléfono válido
+            </mat-hint>
+            <mat-hint
+              class="pending"
+              *ngIf="form.controls['telefono1'].pending; then: imgLoading"
+            ></mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="telefono2"
+              placeholder="Teléfono 2"
+              type="tel"
+              maxlength="9"
+              autocomplete="off"
+            />
+            <mat-hint
+              class="invalid"
+              *ngIf="form.controls['telefono2'].errors?.pattern"
+            >
+              Ingrese un N° de teléfono válido
+            </mat-hint>
+            <mat-hint
+              class="pending"
+              *ngIf="form.controls['telefono2'].pending; then: imgLoading"
+            ></mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="nacimiento"
+              [matDatepicker]="picker"
+              (focus)="picker.open()"
+              placeholder="Fecha de nacimiento"
+              readonly
+              autocomplete="off"
+            />
+            <button
+              mat-button
+              *ngIf="form.controls['nacimiento'].value"
+              matSuffix
+              mat-icon-button
+              (click)="form.controls['nacimiento'].setValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-select
+              formControlName="sexo"
+              placeholder="Sexo"
+            >
+              <mat-option value="M">Masculino</mat-option>
+              <mat-option value="F">Femenino</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-select
+              formControlName="distrito"
+              placeholder="Distrito"
+            >
+              <mat-option
+                *ngFor="let distrito of distritos"
+                [value]="distrito.codDist"
+              >
+                {{ distrito.desDist }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <mat-form-field class="fullwidth">
+            <input
+              matInput
+              formControlName="direccion"
+              placeholder="Dirección"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row mt-5">
+        <div class="col">
+          <mat-checkbox formControlName="notificaciones">
+            Recibir correos y notificaciones de Sedapal
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="form-row mt-5">
+        <div class="col text-center">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+          >
+            Actualizar Datos
+          </button>
+          <br/>
+          <div *ngIf="loading; then: imgLoading"></div>
+        </div>
+      </div>
+      <div *ngIf="error" class="form-row mt-3">
+        <div class="col text-center">
+          <div class="alert alert-danger">{{ error }}</div>
+        </div>
+      </div>
+    </form>
+
+    <ng-template #imgLoading>
+      <img
+        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      />
+    </ng-template>
+  </div>
+</div>

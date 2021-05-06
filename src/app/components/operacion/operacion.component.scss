@@ -1,0 +1,161 @@
+@import 'variables';
+
+.operacion {
+  padding: .5em 2em;
+  height: calc(100% - 50px);
+}
+
+h2 {
+  font-family: $font-family;
+  font-size: 1.4rem;
+  line-height: 1.33;
+  font-weight: 400;
+  color: var(--black-87);
+  padding-left: .4em;
+}
+
+.header-container {
+  @extend %container;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.33;
+  color: var(--black-87);
+  vertical-align: top;
+}
+
+td {
+  opacity: 0.54;
+  font-family: $font-family;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--black);
+  vertical-align: top;
+}
+
+.header-td {
+    opacity: 0.87;
+    margin: auto;
+    text-align: right;
+    font-weight: bold;
+    width: 50%;
+}
+
+tbody {
+  td {
+    padding-right: .5em;
+  }
+}
+
+::ng-deep .mat-select-value, ::ng-deep .mat-select-arrow {
+  color: $light-blue;
+}
+
+::ng-deep mat-select[class*="mat-select-"] {
+  color: $light-blue;
+  font-weight: 600;
+}
+
+a {
+  display: flex;
+
+  .mat-icon {
+    color: #009ff6;
+    font-weight: 600;
+  }
+
+  span {
+    color: #009ff6;
+    font-weight: 600;
+    margin: auto;
+  }
+}
+
+mat-form-field {
+  padding-right: 1em;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $light-blue;
+  font-weight: bold;
+}
+
+::ng-deep .mat-form-field-infix {
+  border-top: 0;
+}
+
+.nro-sum {
+  padding: 0;
+  width: 100px;
+}
+
+:host ::ng-deep form .mat-form-field-label-wrapper .mat-form-field-label {
+  font-size: 14px;
+}
+
+:host ::ng-deep .mat-input-placeholder {
+  font-size: 14px;
+}
+
+:host ::ng-deep form .mat-form-field, form .mat-input-element, form .mat-option {
+  font-size: 14px;
+}
+
+:host ::ng-deep form .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+#busqueda {
+  padding-bottom: 1em;
+  padding-left: 1em;
+}
+
+:host ::ng-deep .mat-form-field-underline {
+  position: static;
+}
+
+.status-operation {
+    margin: auto;
+    width: 75%;
+    border: 3px solid rgb(0, 141, 106);
+    color: rgb(0, 141, 106);
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+.status-operation-fail {
+    margin: auto;
+    width: 75%;
+    border: 3px solid rgb(209, 5, 5);
+    color: rgb(209, 5, 5);
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+.header-consumption {
+    opacity: 0.87;
+    background-color: grey;
+    margin: auto;
+    text-align: center;
+}
+
+p{
+    margin: auto;
+    text-align: center !important;
+}
+
+.btn-back {
+    background-color: #009FF6;
+    padding: 12px 8px;
+    border-radius: 100%;
+    margin-right: 10px;
+}

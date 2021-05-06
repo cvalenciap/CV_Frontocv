@@ -1,0 +1,5 @@
+#ignore modules
+node_modules/
+dist/
+environment.prod
+package-lock.json

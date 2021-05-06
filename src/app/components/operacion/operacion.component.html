@@ -1,0 +1,88 @@
+<div class="operacion">
+    <span openDialog></span>
+    <div id="detalleSuministro">
+        <div class="header-container"  *ngIf="responseService === 1">
+            <div class="status-operation">
+                <img src="assets/img/icon-modal-success.svg"/>
+                <h3>SU PAGO SE PROCESÓ SATISFACTORIAMENTE</h3>
+            </div><br/>
+            <table [style.width]="mobileQuery.matches ? '900px' : '100%'">
+                <thead>
+                <tr>
+                    <th colspan="2">
+                        <h2 class="header-consumption" mat-dialog-title>
+                            <img src="assets/img/payment-dolar.svg"/><strong>&nbsp;RESUMEN DEL PAGO</strong>
+                        </h2>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="header-td">N° de Operación :</td>
+                        <td>{{num_operacion}}</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td">Correo del pagador :</td>
+                        <td>{{mailPay}}</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td">N° de tarjeta :</td>
+                        <td>{{num_tarjeta}}</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td">Fecha y Hora de la transacción :</td>
+                        <td>{{fecha_hora}}</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td">Importe de la transacción (S./):</td>
+                        <td>{{monto}}</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td">N° Liquidación :</td>
+                        <td>{{num_liquidacion}}</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td">Código de la transacción :</td>
+                        <td>{{cod_trx}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="header-container"  *ngIf="responseService === 3">
+            <div class="status-operation-fail">
+                <img src="assets/img/icon-modal-error.svg"/>
+                <h3>ERROR EN EL PROCESO DE PAGO</h3>
+            </div><br/>
+            <p>
+                Ocurrió un error al ejecutar el pago de tu recibo. Por favor, contáctate con nosotros al número <strong>{{numero_soporte}}</strong> o envíanos un correo a <strong>{{correo_soporte}}</strong>.
+            </p>
+        </div>
+        <div class="header-container"  *ngIf="responseService === 2">
+            <div class="status-operation-fail">
+                <img src="assets/img/icon-modal-error.svg"/>
+                <h3>ERROR EN EL PROCESO DE PAGO</h3>
+            </div><br/>
+            <p>
+                Estimado usuario, en estos momentos el servicio de pagos en línea de VISA no se encuentra disponible, intentelo más tarde.
+            </p>
+        </div>
+        <br/><br/>
+        <div class="header-container" *ngIf="responseService === 1">
+            <p>
+                Estimado(a) usuario, en breve recibirás un correo electrónico con el detalle del pago. Si no lo recibes en tu bandeja de entrada, busca la carpeta de spam.
+            </p>
+        </div>
+        <br/>
+        <div class="col-md-12">
+            <a (click)="regresar()" style="float: right; color: #009ff6; vertical-align: middle;">
+                <img class="btn-back" src="assets/img/flecha-atras.svg">
+                <span class="label-back">CERRAR</span>
+            </a>
+        </div>
+  </div>
+  <ng-template #imgLoading>
+    <img
+      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+  </ng-template>
+</div>

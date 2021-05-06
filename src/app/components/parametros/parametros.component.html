@@ -1,0 +1,61 @@
+<span openDialog></span>
+<div style="padding: .5em 2em;">
+
+  <h2>
+    <span style="vertical-align: middle">PARÁMETROS</span>
+    <div style="float: right">
+      <span class="label-nuevo"> Nuevo Parámetro </span>
+      <img class="nuevo-parametro" src="assets/img/icon-add.svg" (click)="add()">
+    </div>
+  </h2>
+
+  <div class="header-container">
+    <!--<a (click)="add()" matTooltip="Crear Nuevo Parámetro">
+      <mat-icon>library_add</mat-icon>
+    </a>-->
+    <div class="table-responsive">
+      <table id="tabla-parametros" name="tabla-parametros" class="table table-hover issue-tracker"
+             [style.width]="mobileQuery.matches ? '900px' : '100%'">
+        <thead class="table-head">
+          <tr>
+            <th width="20%" style="border: none;">Categoria</th>
+            <th width="20%" style="border: none;">Clase</th>
+            <th width="20%" style="border: none;">Fecha de Alta</th>
+            <th width="20%" style="border: none;">Valor</th>
+            <th width="20%" style="border: none;">Activo</th>
+            <th style="border: none;"></th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr *ngFor="let dato of datos; let i = index" (click)="selectRow(i, dato)" [class.info]="i == selectedRow">
+            <td width="20%">{{dato.categoria}}</td>
+            <td width="20%">{{dato.clase}}</td>
+            <td width="20%">{{dato.f_alta | date : 'dd / MM / yyyy'}}</td>
+            <td width="20%">{{dato.valor}}</td>
+            <td width="20%">{{dato.flag ? 'Activo' : 'Inactivo'}}</td>
+            <td>
+              <button [matMenuTriggerFor]="menu" mat-icon-button class="icon" [tabIndex]="-1" style="float: right">
+                <img src="assets/img/icon-menu.svg" width="4px">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <app-pagination (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()" [pagesToShow]="6" [page]="page"
+                    [perPage]="limit" [count]="total"></app-pagination>
+  </div>
+
+</div>
+
+<mat-menu #menu="matMenu">
+  <a mat-menu-item (click)="viewDetalle()">
+    <img src="assets/img/icon-ver-detalle.svg">
+    <span class="receipt-menu">Ver detalle</span>
+  </a>
+  <a mat-menu-item (click)="edit()">
+    <img src="assets/img/icon-ver-pagos.svg">
+    <span class="receipt-menu">Editar</span>
+  </a>
+</mat-menu>

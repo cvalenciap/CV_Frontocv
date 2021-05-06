@@ -1,0 +1,32 @@
+<div class="bg-image">
+  <img [src]="getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().banner" [class]="mobileQuery.matches ? 'fondo-mobile' : 'fondo'">
+  <img *ngIf="mobileQuery.matches" src="assets/img/icon-menu-sandwich.svg" class="menu-sandwich" (click)="toggle()">
+  <img [src]="getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().logo" [class]="mobileQuery.matches ? 'logo-mobile' : 'logo'">
+  <div *ngIf="!mobileQuery.matches">
+    <div>
+      <h1 class="titulo"><span class="span">¡</span>{{getTitulos().titulo}}<span class="span">!</span></h1>
+    </div>
+    <h2 class="subtitulo">{{getTitulos().subtitulo1}}
+      <br/>
+      {{getTitulos().subtitulo2}}</h2>
+  </div>
+  <div>
+    <span [class]="mobileQuery.matches ? 'correo-mobile' : 'correo'">
+      <img src="assets/img/account.svg" style="height: 30px; padding-right: 10px;">
+      <span *ngIf="!mobileQuery.matches">{{correo}}</span>
+    </span>
+    <button [matMenuTriggerFor]="menu" mat-icon-button [class.icon-mobile]="mobileQuery.matches" [class.icon]="!mobileQuery.matches" [tabIndex]="-1">
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+  </div>
+</div>
+<mat-menu #menu="matMenu">
+  <a mat-menu-item routerLink="/actualizar-datos">
+    <img src="assets/img/icon-upd-info.svg">
+    <span class="receipt-menu">Actualizar Datos</span>
+  </a>
+  <a mat-menu-item (click)="logout()">
+    <img src="assets/img/icon-logout.svg">
+    <span class="receipt-menu">Cerrar Sesión</span>
+  </a>
+</mat-menu>

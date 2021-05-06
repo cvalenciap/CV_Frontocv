@@ -1,0 +1,172 @@
+@import 'variables';
+
+.header {
+  margin: 1em 0;
+  img {
+    margin: 0 .5em;
+  }
+}
+
+table {
+  @extend %tablaModal;
+}
+
+table td {
+  @extend %tdModal;
+}
+
+table th {
+  @extend %thModal;
+}
+
+table tbody {
+  @extend %tbodyModal;
+}
+
+table thead th {
+  vertical-align: top;
+}
+
+.container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 25px;
+  margin: 0;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.pagar-recibos {
+  border-radius: 50px;
+  border: solid 6px $yellow-orange;
+  background-color: $yellow-orange;
+  opacity: 0.87;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+
+.image {
+  transform: rotate(45deg);
+}
+
+.no-data {
+  text-align: center;
+  letter-spacing: 0.3px;
+  font-family: $font-family;
+  margin: 3em;
+}
+
+.titulo {
+  opacity: 0.87;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.descripcion {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+a {
+  text-decoration: none;
+}
+.receipt-menu {
+  margin-left: 10px;
+  color: #009ff6;
+}
+.table-head {
+  display: block;
+  width: 100%;
+  padding-right: 10px;
+}
+.table-body {
+  display: block;
+  width: 100%;
+  max-height: 350px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+tbody::-webkit-scrollbar {
+  width: 9px;
+}
+tbody::-webkit-scrollbar-track {
+  border-radius: 4.5px;
+  background-color: #dbdbdb;
+}
+tbody::-webkit-scrollbar-thumb {
+  background-color: #727272;
+  outline: 1px solid #dbdbdb;
+  border-radius: 4.5px;
+}
+tbody::-webkit-scrollbar-corner {
+  border-radius: 4.5px;
+}
+.mat-menu-item-highlighted:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item:hover:not([disabled]) {
+  background-color: #e2f0ff;
+}
+tr:hover td{
+  background-color: #e2f0ff;
+}
+
+::ng-deep .mat-tooltip {
+  font-size: 12px !important;
+}

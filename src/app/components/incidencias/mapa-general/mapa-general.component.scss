@@ -1,0 +1,15 @@
+@import "variables";
+
+agm-map {
+  height: 500px;
+  width: 100%;
+}
+
+.agm-map-container-inner {
+  width: inherit;
+  height: inherit;
+}
+
+.agm-map-content {
+  display: none;
+}

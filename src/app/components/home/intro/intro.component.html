@@ -1,0 +1,27 @@
+<span openDialog></span>
+<!--<div class="intro"
+     [ngStyle]="{backgroundImage: 'url(' + getImagenes().urlBase + getImagenes().carpetaImagenes + 'bg-degrade.png), url(' + getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().background + ')'}">-->
+<div class="intro"
+     [ngStyle]="{backgroundImage: 'url(' + getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().background + ')'} ">
+     <!--[ngStyle]="{backgroundImage: 'url(assets/img/group-3.jpg)'} ">-->
+  <div class="container">
+    <img *ngIf="getImagenes().urlBase && getImagenes().logo"
+         [src]="getImagenes().urlBase + getImagenes().carpetaImagenes + getImagenes().logo"
+         width="270" height="63"/>
+    <p>{{getImagenes().descCarousel1}}</p>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
+      <ol class="carousel-indicators">
+        <li *ngFor="let item of items; let i = index;" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"
+            [ngClass]="{ active: i == 0 }"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div *ngFor="let item of items; let i = index;" class="carousel-item" [ngClass]="{ active: i == 0 }">
+          <img class="d-block" [src]="item.image" [alt]="item.alt">
+          <div class="carousel-caption d-none d-md-block">
+            <p>{{ item.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

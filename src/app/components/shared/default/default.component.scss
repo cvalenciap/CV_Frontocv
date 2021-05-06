@@ -1,0 +1,44 @@
+@import "variables";
+
+.titulo {
+  color: var(--black);
+  opacity: 0.87;
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #000000;
+}
+
+.descripcion {
+  font-size: 12px;
+  font-family: $font-family;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.26px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+
+.no-data {
+  text-align: center;
+  letter-spacing: 0.3px;
+  font-family: $font-family;
+  margin: 0 auto;
+}
+
+
+.header-container {
+  @extend %container;
+  margin: 2em;
+  height: 90%;
+  display: flex;
+  align-items: center;
+}

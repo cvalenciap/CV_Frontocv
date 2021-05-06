@@ -1,0 +1,143 @@
+@import "variables";
+
+.header-container {
+  @extend %container;
+}
+
+.concept-line {
+  margin: 1em 0;
+}
+
+table {
+  @extend %tablaModal;
+}
+
+table td {
+  @extend %tdModal;
+}
+
+table th {
+  @extend %thModal;
+}
+
+table tbody {
+  @extend %tbodyModal;
+}
+
+table tr {
+  cursor: pointer;
+}
+
+.texto {
+  opacity: 0.87;
+  font-family: $font-family;
+
+  &.supply-label {
+    font-size: $font-size;//18px;
+    font-weight: 300;
+    line-height: 0.89;
+  }
+
+  &.supply {
+    font-size: $font-size;//18px;
+    line-height: 0.89;
+    font-weight: 600;
+  }
+
+  &.header {
+    font-size: 16px;
+    line-height: 1.33;
+    padding-left: 1em;
+  }
+
+  &.concept {
+    font-size: 14px;
+  }
+
+  &.amount {
+    font-size: 14px;
+    text-align: right;
+  }
+
+  &.total-label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &.total {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+}
+
+.horizontal-line {
+  height: 8px;
+  border: solid 1px rgba(0, 0, 0, 0.12);
+  background-color: #edf1f8;
+  margin-left: -50%;
+  width: 200%;
+}
+
+form {
+  text-align: center;
+  margin-top: .5em;
+}
+
+::ng-deep .toast-top-right {
+  top: 130px !important;
+}
+::ng-deep .toast-container .toast {
+  width: 300px !important;
+}
+
+.btn-back {
+  background-color: #009FF6;
+  padding: 12px 8px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.label-back {
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #009ff6;
+  margin-right: 10px;
+}
+
+.info-msg {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #f16018;
+  background-color: #fed996;
+  padding: 15px;
+  vertical-align: middle;
+  display: inline-table;
+}
+
+/* inicio cvalenciap*/
+.alarm-msg {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 45px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #f16018;
+  padding: 15px;
+  vertical-align: middle;
+  display: inline-table;
+}
+/*fin cvalenciap */

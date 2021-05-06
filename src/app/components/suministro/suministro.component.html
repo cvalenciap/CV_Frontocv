@@ -1,0 +1,97 @@
+<div class="suministro">
+  <span openDialog></span>
+  <div id="detalleSuministro" *ngIf="showSuministro">
+    <div id="busqueda" *ngIf="admin_etic !== 0 || admin_com !== 0">
+      <div>
+        <table>
+          <tbody>
+          <tr>
+            <td style="vertical-align: middle; width: 100px;">
+              <span>N° Suministro</span>
+            </td>
+            <td style="width: 100px;">
+              <form [formGroup]="form" *ngIf="admin_etic !== 0 || admin_com !== 0" (ngSubmit)="verifySuministro()">
+                <mat-form-field class="nro-sum">
+                  <input
+                    matInput
+                    formControlName="suministro"
+                    maxlength="7"
+                    autocomplete="off"
+                    id="suministro"
+                    (input)="stripText(form.get('suministro'))"
+                  />
+                </mat-form-field>
+              </form>
+            </td>
+            <td style="vertical-align: middle;">
+              <mat-icon (click)="verifySuministro()" style="cursor: pointer">search</mat-icon>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="header-container">
+      <table [style.width]="mobileQuery.matches ? '900px' : '100%'">
+        <thead>
+        <tr>
+          <th width="10%">N° Suministro</th>
+          <th width="15%">Estado</th>
+          <th width="20%">Nombre Titular</th>
+          <th width="28%">Dirección</th>
+          <th width="10%">Deuda Total</th>
+          <th width="22%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td width="10%">
+            <div *ngIf="suministros.length > 1">
+              <mat-form-field>
+                <mat-select [(value)]="selected" (selectionChange)="OnChangeSuministro(selected)"
+                            disableOptionCentering>
+                  <mat-option *ngFor="let suministro of suministros" [value]="suministro.nis_rad">
+                    {{suministro.nis_rad}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngIf="suministros.length <= 1">
+              {{selected}}
+            </div>
+          </td>
+          <td width="15%">{{estado}}</td>
+          <td width="20%">{{nom_cliente}}</td>
+          <td width="28%">{{direccion}}</td>
+          <td width="10%">{{deuda_total | CustomeCurrency}}</td>
+
+          <td width="22%">
+            <a (click)="viewHistoricoConsumo()">
+              <img src="assets/img/icon-bar.svg" width="15px" height="15px" style="margin-right: 5px">
+              <span>Ver gráficos de consumo</span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br/>
+    <h2>Mis Recibos</h2>
+    <div class="header-container">
+      <div>
+        <app-lista-recibo *ngIf="cargaListas" [selectedSupply]="selected"
+                          (PagarRecibos)="mostrarResumen($event)"></app-lista-recibo>
+      </div>
+    </div>
+  </div>
+  <div id="resumenPago" *ngIf="!showSuministro">
+    <app-resumen-pago [recibos]="recibos" [nis_rad]="nis_rad" (Regresar)="showSuministro = true" [mostrarMsj]="mostratMsj" [msj]="msj"></app-resumen-pago>
+
+  </div>
+
+  <ng-template #imgLoading>
+    <img
+      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+  </ng-template>
+</div>

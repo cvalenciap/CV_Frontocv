@@ -1,0 +1,25 @@
+<h2 matDialogTitle>Vista en Mapa<!--Distrito Afectado : {{data.municipality.nom_municipio}}-->
+  <button (click)="dialogRef.close()" [tabIndex]="-1" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</h2>
+<agm-map
+  [latitude]="data.markers[0].lat"
+  [longitude]="data.markers[0].lng"
+  [zoom]="13"
+  [disableDefaultUI]="false"
+  [zoomControl]="false">
+
+  <agm-marker *ngFor="let marcador of data.markers"
+              [latitude]="marcador.lat" [longitude]="marcador.lng">
+
+    <agm-info-window>
+      <strong>{{marcador.nom_incidencia}}</strong><br/>
+      {{marcador.tipo_incidencia}}<br/>
+      <small>Fecha incidencia: {{marcador.fecha_incidencia | date : 'dd/MM/yyyy hh:mm:ss'}}</small><br/>
+      <small>Fecha estimada sol: {{marcador.fecha_estimada_sol | date : 'dd/MM/yyyy hh:mm:ss'}}</small>
+    </agm-info-window>
+
+  </agm-marker>
+
+</agm-map>

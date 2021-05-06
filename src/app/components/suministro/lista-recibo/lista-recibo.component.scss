@@ -1,0 +1,37 @@
+@import 'variables';
+
+h6 {
+  font-family: $font-family, SansSerif;
+  font-weight: 500;
+  padding-left: 1em;
+}
+
+.mat-tab-body .mat-tab-body-active {
+  overflow: hidden;
+}
+
+::ng-deep .mat-tab-body .mat-tab-body-content {
+  overflow: hidden;
+}
+
+.mat-tab-group.mat-primary {
+  overflow: hidden;
+}
+
+.mat-tab-group {
+  overflow: hidden;
+}
+
+.detail {
+  background: white;
+  padding: 1em;
+}
+
+::ng-deep .mat-tab-label.mat-tab-label-active {
+  font-weight: bold;
+  color: $light-blue;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background: $light-blue;
+}

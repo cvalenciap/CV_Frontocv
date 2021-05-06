@@ -1,0 +1,39 @@
+<span openDialog></span>
+<div style="padding: .5em 2em;">
+
+  <h2>
+    <span style="vertical-align: middle">LUGARES DE PAGO</span>
+    <div style="float: right">
+      <span class="label-mapa"> Ver en mapa </span>
+      <img class="global-map" src="assets/img/icon-map-white.svg" (click)="OnMuestraMapaPrincipal(agenciaPago)">
+    </div>
+  </h2>
+  <div class="header-container">
+    <div class="table-responsive">
+      <table id="tabla-lugares-pago" name="tabla-lugares-pago" class="table table-hover issue-tracker"
+             [style.width]="mobileQuery.matches ? '900px' : '100%'">
+        <thead class="table-head">
+          <th width="20%" style="border: none;">Recaudador</th>
+          <th width="20%" style="border: none;">Dirección</th>
+          <th width="20%" style="border: none;">Distrito</th>
+          <th width="20%" style="border: none;">Tipo</th>
+          <th width="20%" style="border: none;"></th>
+        </thead>
+        <tbody class="table-body">
+        <tr *ngFor="let sucursalPago of sucursalesPago">
+          <td width="20%">{{sucursalPago.nom_recaudador}}</td>
+          <td width="20%">{{sucursalPago.dir_recaudador}}</td>
+          <td width="20%">{{sucursalPago.distrito}}</td>
+          <td width="20%">{{sucursalPago.tip_recaudador}}</td>
+          <td>
+            <button mat-icon-button class="icon" [tabIndex]="-1" style="float: right" (click)="OpenMapaPrincipal(sucursalPago)">
+              <img src="assets/img/icon-map.svg">
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

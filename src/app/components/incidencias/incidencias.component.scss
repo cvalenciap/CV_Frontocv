@@ -1,0 +1,168 @@
+@import 'variables';
+
+.container-vacio {
+  @extend %container;
+  margin: 2em;
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.titulo {
+  color: var(--black);
+  opacity: 0.87;
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #000000;
+}
+
+.descripcion {
+  font-size: 12px;
+  font-family: $font-family;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.26px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+
+.no-data {
+  text-align: center;
+  letter-spacing: 0.3px;
+  font-family: $font-family;
+  margin: 0 auto;
+}
+
+.label-mapa {
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #009ff6;
+  margin-right: 10px;
+}
+
+.distrito-container {
+  padding: 20px;
+  background-color: #ffffff;
+  margin: 2em;
+  margin-top: 0;
+  display: inline-table;
+  width: 310px;
+  .label-distrito {
+    font-family: $font-family;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+  }
+  .distrito {
+    opacity: 0.54;
+    font-family: $font-family;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.07;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+  }
+}
+.global-map {
+  background-color: #009FF6;
+  padding: 5px 10px;
+  border-radius: 100%;
+  margin-right: 2em;
+}
+.btn-incidencia {
+  border: none;
+  border-radius: 100px;
+  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.16);
+  background-color: #fefefe;
+  padding: 5px 10px;
+  cursor: pointer;
+  outline: none;
+  height: 35px;
+
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #009ff6;
+}
+.btn-incidencia:hover {
+  color: white;
+  background-color: #009ff6;
+}
+
+.btn-back {
+  background-color: #009FF6;
+  padding: 12px 8px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+h2 {
+  font-family: $font-family;
+  font-size: 1.2rem;
+  line-height: 1.33;
+  font-weight: 400;
+  color: var(--black-87);
+  padding-left: .4em;
+}
+
+.header-container {
+  @extend %container;
+}
+
+th {
+  border: none !important;
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+td {
+  border-bottom: 1px solid #dee2e6;
+  border-top: none !important;
+}
+.text {
+  opacity: 0.54;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: #000000;
+}
+
+tr:hover td{
+  background-color: #e2f0ff;
+}
